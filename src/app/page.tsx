@@ -1,101 +1,134 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  featuresData,
+  benefitsData,
+  futureFeaturesData,
+  useCasesData,
+  pricingData,
+  faqData,
+  heroData,
+} from "@/lib/constants";
+import { ProductBenefitsCard } from "@/components/benefits-card";
+import { ProductFeatureCard } from "@/components/features-card";
+import { ProductFutureFeatureCard } from "@/components/future-features-card";
+import { UseCasesCarousel } from "@/components/usecases-carousel";
+import { PricingSection } from "@/components/pricing-section";
+import { FAQCard } from "@/components/faq-card";
+import { Hero } from "@/components/hero";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen constant mx-auto">
+      {/* Hero Section */}
+      <Hero
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        buttonText={heroData.buttonText}
+        buttonLink={heroData.buttonLink}
+        imageUrl={heroData.imageUrl}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Benefits Section */}
+      <section id="benefits" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-4">Why Choose Magistrala?</h2>
+          <p className="text-lg text-gray-700 mb-12">
+            Empower your production ecosystem with tools designed to simplify, secure,
+            and scale your operations.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {benefitsData.map((benefit, index) => (
+              <ProductBenefitsCard
+                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
+                key={index}
+                title={benefit.title}
+                description={benefit.description}
+                imageUrl={benefit.imageUrl}
+              />
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-blue-200">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Explore Our Features</h2>
+          <p className="text-lg text-gray-700 mb-12">
+            Discover tools that make your development journey seamless and
+            scalable.
+          </p>
+
+          <div className="space-y-12">
+            {featuresData.map((feature, index) => (
+              <ProductFeatureCard
+                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                reverse={index % 2 !== 0}
+                imageUrl={feature.imageUrl}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Future Features Section */}
+      <section id="next-features" className="py-20 bg-blue-200">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Thats not all!</h2>
+          <p className="text-lg text-gray-700 mb-12">
+            We have a range of exciting new updates still on the drawing board
+            to look forward to!
+          </p>
+          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {futureFeaturesData.map((futureFeature, index) => (
+              <ProductFutureFeatureCard
+                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
+                key={index}
+                title={futureFeature.title}
+                description={futureFeature.description}
+                imageUrl={futureFeature.imageUrl}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Carousel */}
+      <section id="use-cases" className=" bg-gray-100 py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-8">Use Cases</h2>
+          <p className="text-lg text-gray-700 text-center mb-8">
+            Here are some real world solutions that Magistrala has aided in
+            fruition
+          </p>
+          <UseCasesCarousel useCases={useCasesData} />
+        </div>
+      </section>
+
+      {/* Pricing Section*/}
+      <PricingSection plans={pricingData} />
+
+      {/* FAQ Section */}
+      <section id="faq" className=" py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12">FAQs</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {faqData.map((faqCategory, index) => (
+              <FAQCard
+                // biome-ignore lint/suspicious/noArrayIndexKey:
+                key={index}
+                title={faqCategory.title}
+                faqs={faqCategory.faqs}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
