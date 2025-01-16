@@ -33,8 +33,29 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .next/cache
+            node_modules/.cache
+          key: build-${{ hashFiles('**/package-lock.json') }}-
+          restore-keys: |
+            build-${{ hashFiles('**/package-lock.json') }}-
+          enableCrossOsArchive: true
+
       - name: Build project
         run: npm run build
+
+      - name: Save Cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .next/cache
+            .turbo/cache
+            node_modules/.cache
+          key: build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('node_modules/.cache') }}
+          enableCrossOsArchive: true
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
