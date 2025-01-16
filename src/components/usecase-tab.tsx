@@ -64,7 +64,7 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
               </div>
               <div className="relative h-[300px] md:h-[400px]">
                 <Image
-                  src={`/mg-website/${useCase.imageUrl}`}
+                  src={`/${useCase.imageUrl}`}
                   alt={useCase.title}
                   fill
                   className="object-cover rounded-lg"
