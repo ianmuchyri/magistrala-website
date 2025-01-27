@@ -12,7 +12,7 @@ export function BenefitsSection() {
   const { sectionId, title, subtitle, benefits } = benefitsSectionData;
 
   return (
-    <section id={sectionId} className="py-20 bg-gray-50">
+    <section id={sectionId} className="py-32 bg-gray-50">
       <div className="container mx-auto text-center">
         <h2 className="text-5xl text-blue-950 xxs:text-2xl mb-4">{title}</h2>
         <p className="text-xl text-gray-700 mb-12">{subtitle}</p>

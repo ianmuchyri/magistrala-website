@@ -13,7 +13,7 @@ export function FeaturesSection() {
   const { sectionId, title, subtitle, features } = featuresSectionData;
 
   return (
-    <section id={sectionId} className="py-20 bg-blue-200">
+    <section id={sectionId} className="py-32 bg-blue-200">
       <div className="container mx-auto">
         <h2 className="lg:text-5xl text-3xl mb-4 text-center">{title}</h2>
         <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">

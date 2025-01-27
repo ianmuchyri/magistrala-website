@@ -4,6 +4,7 @@ import { ComingSoonBanner } from '@/components/section-coming-soon';
 import { FAQSection } from '@/components/section-faq';
 import { FeaturesSection } from '@/components/section-features';
 import { Hero } from '@/components/section-hero';
+import { PricingSection } from '@/components/section-pricing';
 import { UseCasesSection } from '@/components/section-usecase';
 
 export default function Home() {
@@ -15,9 +16,9 @@ export default function Home() {
       <FeaturesSection />
       {/* <NextFeaturesSection /> */}
       <UseCasesSection />
-      {/* <PricingSection plans={pricingData} /> */}
-      <ComingSoonBanner />
 
+      <ComingSoonBanner />
+      {/* <PricingSection /> */}
       <FAQSection />
     </div>
   );

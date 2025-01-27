@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { featuresSectionData } from '@/lib/constants';
+import { featuresSectionData, pricingData } from '@/lib/constants';
 import type { PricingCardProps } from '@/types/card-types';
 import { Check } from 'lucide-react';
 
@@ -22,18 +22,18 @@ export interface PricingPlan {
   ctaLink: string;
 }
 
-export function PricingSection({ plans }: PricingSectionProps) {
+export function PricingSection() {
   return (
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto">
-        <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
+        <h2 className="lg:text-5xl text-3xl mb-4 text-center text-blue-950">
           Pricing
         </h2>
         <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">
           Choose the plan that best fits your needs
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto">
+          {pricingData.map((plan) => (
             <PricingCard key={plan.title} {...plan} />
           ))}
         </div>

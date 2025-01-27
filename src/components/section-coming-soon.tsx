@@ -6,7 +6,7 @@ export function ComingSoonBanner() {
   return (
     <section
       id="pricing"
-      className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16 px-6 shadow-lg"
+      className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-32 px-6 shadow-lg "
     >
       <div
         className="absolute inset-0 -z-10 border-beam border-opacity-50"

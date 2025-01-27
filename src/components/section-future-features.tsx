@@ -13,7 +13,7 @@ export function NextFeaturesSection() {
   const { sectionId, title, subtitle, features } = nextFeaturesSectionData;
 
   return (
-    <section id={sectionId} className="py-20 bg-blue-200">
+    <section id={sectionId} className="py-32 bg-blue-200">
       <div className="container mx-auto text-center">
         <h2 className="lg:text-4xl text-2xl font-bold mb-4">{title}</h2>
         <p className="text-xl text-gray-700 mb-12">{subtitle}</p>
