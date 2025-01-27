@@ -9,7 +9,7 @@ import { heroData } from '@/lib/constants';
 
 export default function Home() {
   return (
-    <div className="min-h-screen constant mx-auto">
+    <div className="min-h-screen constant mx-auto py-8 md:py-20">
       {/* Hero Section */}
       <Hero
         title={heroData.title}
