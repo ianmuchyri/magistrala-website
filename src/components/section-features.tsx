@@ -15,9 +15,7 @@ export function FeaturesSection() {
   return (
     <section id={sectionId} className="py-20 bg-blue-200">
       <div className="container mx-auto">
-        <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
-          {title}
-        </h2>
+        <h2 className="lg:text-5xl text-3xl mb-4 text-center">{title}</h2>
         <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">
           {subtitle}
         </p>
@@ -47,14 +45,12 @@ export function ProductFeatureCard({
 }: ProductFeatureCardProps) {
   return (
     <div
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 py-6 ${
+      className={`flex flex-col md:flex-row items-center justify-between gap-8  ${
         reverse ? 'md:flex-row-reverse' : ''
       }`}
     >
       <div className="w-full md:w-1/2 space-y-4">
-        <h3 className="lg:text-4xl text-2xl text-blue-950 font-bold">
-          {title}
-        </h3>
+        <h3 className="lg:text-4xl text-2xl">{title}</h3>
         <p className="text-gray-700 text-lg lg:text-xl">{description}</p>
       </div>
       <div className="w-full md:w-1/2">
