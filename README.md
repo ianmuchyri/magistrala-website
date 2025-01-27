@@ -60,5 +60,5 @@ This project is preconfigured for deployment on GitHub Pages. Once a PR is merge
 Once deployed, the webpage will be accessible at the URL specified in the `homepage` field in the `package.json` which is currently:
 
 ```json
-"homepage": "https://absmach.github.io/mg-website"
+"homepage": "https://absmach.github.io/magistrala-website"
 ```

@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
-  assetPrefix: isProd ? '/mg-website/' : '',
-  basePath: isProd ? '/mg-website' : '',
+  assetPrefix: isProd ? '/magistrala-website/' : '',
+  basePath: isProd ? '/magistrala-website' : '',
   images: {
     unoptimized: true,
   },
