@@ -53,7 +53,7 @@ export default function Header() {
 
         {/* CTA Button Section */}
         <div className="hidden md:flex items-center gap-6">
-          <Link href="#pricing">
+          <a href="#pricing">
             <Button
               variant="default"
               aria-label="Try for free"
@@ -61,7 +61,16 @@ export default function Header() {
             >
               Try For Free
             </Button>
-          </Link>
+          </a>
+          <a href="#pricing">
+            <Button
+              variant="outline"
+              aria-label="Request for demo"
+              className="  px-4 py-4 rounded"
+            >
+              Request For Demo
+            </Button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -80,7 +89,7 @@ export default function Header() {
             </SheetHeader>
             <Separator className="my-4 mt-8" />
             <nav className="flex flex-col gap-4 mt-8">
-              <ul className="flex flex-col space-y-4">
+              <ul className="flex flex-col space-y-4 items-center">
                 {navigationLinks.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -92,17 +101,27 @@ export default function Header() {
                     </Link>
                   </li>
                 ))}
-                <Separator className="my-4" />
                 <li className="pt-4">
-                  <Link href="#pricing">
+                  <a href="#pricing">
                     <Button
                       variant="default"
                       aria-label="Try for free"
-                      className="bg-blue-800 text-white hover:bg-blue-600 px-4 py-4 rounded w-full text-lg"
+                      className="bg-blue-800 text-white px-4 py-4 rounded-lg text-lg "
                     >
                       Try For Free
                     </Button>
-                  </Link>
+                  </a>
+                </li>
+                <li className="pt-4">
+                  <a href="#pricing">
+                    <Button
+                      variant="default"
+                      aria-label="Request for demo"
+                      className="bg-blue-800 text-white px-4 py-4 rounded-lg text-lg"
+                    >
+                      Request For Demo
+                    </Button>
+                  </a>
                 </li>
               </ul>
             </nav>
