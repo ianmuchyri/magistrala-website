@@ -3,7 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { useCasesSectionData } from '@/lib/constants';
+import { getImageUrl } from '@/lib/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -31,7 +32,7 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
           <TabsTrigger
             key={useCase.title}
             value={useCase.title}
-            className="data-[state=active]:bg-blue-800 data-[state=active]:text-white rounded-full px-6 py-2"
+            className="data-[state=active]:bg-blue-800 data-[state=active]:text-white rounded-full px-6 py-2 text-lg"
           >
             {useCase.title}
           </TabsTrigger>
@@ -42,14 +43,18 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
           <Card className="overflow-hidden border-none shadow-lg">
             <div className="grid md:grid-cols-2 gap-6 p-6">
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-2xl font-bold tracking-tight">
+                <h3 className="lg:text-2xl text:xl font-bold tracking-tight">
                   {useCase.title}
                 </h3>
-                <p className="text-muted-foreground">{useCase.description}</p>
+                <p className="text-muted-foreground text-lg">
+                  {useCase.description}
+                </p>
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button className="bg-blue-800 hover:bg-blue-600" asChild>
-                    <a href={useCase.ctaLink}>{useCase.ctaText}</a>
-                  </Button>
+                  {useCase.ctaText && useCase.ctaLink && (
+                    <Button className="bg-blue-800 hover:bg-blue-600" asChild>
+                      <a href={useCase.ctaLink}>{useCase.ctaText}</a>
+                    </Button>
+                  )}
                   {useCase.secondaryCtaText && useCase.secondaryCtaLink && (
                     <Button
                       variant="outline"
@@ -76,5 +81,23 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
         </TabsContent>
       ))}
     </Tabs>
+  );
+}
+
+export function UseCasesSection() {
+  const { sectionId, title, subtitle, useCases } = useCasesSectionData;
+
+  return (
+    <section id={sectionId} className="bg-gray-100 py-20">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl lg:text-5xl font-bold text-center mb-8">
+          {title}
+        </h2>
+        <p className="text-xl lg:text-2xl text-gray-700 text-center mb-8">
+          {subtitle}
+        </p>
+        <UseCasesTabs useCases={useCases} />
+      </div>
+    </section>
   );
 }

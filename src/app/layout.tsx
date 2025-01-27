@@ -1,14 +1,22 @@
 import Footer from '@/components/ui/footer';
 import Header from '@/components/ui/header';
+import { getImageUrl } from '@/lib/utils';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Rubik } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Magistrala',
   description: 'Connect and Visualize your Devices',
+  icons: {
+    icon: [
+      {
+        url: getImageUrl('favicon.png'),
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -18,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={rubik.className}>
         <Header />
         <main>{children}</main>
         <Footer />
