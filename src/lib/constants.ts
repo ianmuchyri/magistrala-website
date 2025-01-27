@@ -140,23 +140,27 @@ export const useCasesSectionData = {
       ctaText: 'Learn more',
       ctaLink: '#',
       secondaryCtaText: 'View demo',
-      secondaryCtaLink: '/demo/smart-cities',
+      secondaryCtaLink: '#',
     },
     {
       title: 'Smart Energy',
       description:
         'Deliver and store data from smart meters in reliable and fault-tolerant way, visualize real-time and historical energy consumption data on customizable end-user dashboards.',
       imageUrl: 'smart-home.jpg',
-      ctaText: 'See more about Smart energy',
+      ctaText: 'Learn more',
       ctaLink: '#',
+      secondaryCtaText: 'View demo',
+      secondaryCtaLink: '#',
     },
     {
       title: 'Industrial IoT',
       description:
         'Monitor and control industrial equipment, optimize production processes, and predict maintenance needs in real-time.',
       imageUrl: 'industrial.jpg',
-      ctaText: 'Explore Industrial IoT',
+      ctaText: 'Learn more',
       ctaLink: '#',
+      secondaryCtaText: 'View demo',
+      secondaryCtaLink: '#',
     },
   ],
 };
@@ -197,9 +201,18 @@ export const heroData = {
   title: 'Simplify Messaging  Empower Systems  Integrate Seamlessly',
   subtitle:
     'Magistrala bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations.',
-  buttonText: 'Get Started',
-  buttonLink: '#',
-  imageUrl: 'abstract1.svg',
+  getStartedButton: {
+    text: 'Get Started',
+    link: '#',
+  },
+  requestDemoButton: {
+    text: 'Request For Demo',
+    link: '#',
+  },
+  image: {
+    url: 'abstract1.svg',
+    alt: 'Hero Image',
+  },
 };
 
 export const bannerIcons = {
@@ -384,3 +397,18 @@ export const faqData = [
     ],
   },
 ];
+
+export const HeaderData = {
+  Logo: {
+    url: 'abstract-machines_logo_landscape-black.svg',
+    placeholder: '/placeholder.svg',
+    alt: 'Logo',
+    width: 250,
+    height: 250,
+  },
+  navigationLinks: navigationLinks,
+  ctaButton: {
+    text: 'Try For Free',
+    link: '#pricing',
+  },
+};

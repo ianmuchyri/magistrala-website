@@ -1,47 +1,23 @@
-import { ComingSoonBanner } from '@/components/coming-soonbanner';
 import { PoweredBy } from '@/components/powered-by';
 import { BenefitsSection } from '@/components/section-benefits';
+import { ComingSoonBanner } from '@/components/section-coming-soon';
 import { FAQSection } from '@/components/section-faq';
 import { FeaturesSection } from '@/components/section-features';
 import { Hero } from '@/components/section-hero';
-import { UseCasesSection } from '@/components/usecase-tab';
-import { heroData } from '@/lib/constants';
+import { UseCasesSection } from '@/components/section-usecase';
 
 export default function Home() {
   return (
-    <div className="min-h-screen constant mx-auto py-8 md:py-20">
-      {/* Hero Section */}
-      <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        buttonText={heroData.buttonText}
-        buttonLink={heroData.buttonLink}
-        imageUrl={heroData.imageUrl}
-      />
-
-      {/* Benefits Section */}
+    <div className="min-h-screen constant mx-auto">
+      <Hero />
       <BenefitsSection />
-
-      {/* Features Section */}
+      <PoweredBy />
       <FeaturesSection />
-
-      {/* Future Features Section */}
       {/* <NextFeaturesSection /> */}
-
-      {/* Use Cases Tabs */}
       <UseCasesSection />
-
-      {/* Pricing Section*/}
-
       {/* <PricingSection plans={pricingData} /> */}
-
-      {/* Coming Soon Banner Section */}
       <ComingSoonBanner />
 
-      {/* Powered By Section */}
-      <PoweredBy />
-
-      {/* FAQ Section */}
       <FAQSection />
     </div>
   );

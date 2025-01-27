@@ -1,49 +1,50 @@
 import { Button } from '@/components/ui/button';
+import { heroData } from '@/lib/constants';
 import { getImageUrl } from '@/lib/utils';
-import { ArrowRightCircleIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-interface HeroProps {
-  title: string;
-  subtitle: string;
-  buttonText: string;
-  buttonLink: string;
-  imageUrl: string;
-}
-
-export function Hero({
-  title,
-  subtitle,
-  buttonText,
-  buttonLink,
-  imageUrl,
-}: HeroProps) {
+export function Hero() {
   return (
     <section className="py-20 md:h-[95vh]">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2  space-y-2">
         <div className="text-center md:text-left space-y-8">
-          <h2 className="lg:text-6xl text-5xl font-bold mb-4 text-blue-950 tracking-tight">
-            {title}
-          </h2>
-          <p className=" text-2xl text-gray-800">{subtitle}</p>
-          <Button
-            size="lg"
-            variant="default"
-            className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded h-14 w-48 text-xl"
-            asChild
-          >
-            <a href={buttonLink}>
-              <span>{buttonText}</span>
-              <ArrowRightCircleIcon className="w-7 h-7" />
-            </a>
-          </Button>
+          <h1 className="lg:text-6xl text-5xl mb-4 text-blue-950 tracking-tight">
+            {heroData.title}
+          </h1>
+          <p className="text-xl text-gray-800">{heroData.subtitle}</p>
+          <div className="flex flex-col md:flex-row gap-4 items-center">
+            <Button
+              size="lg"
+              variant="default"
+              className="px-4 py-2 rounded w-48 hover:scale-105"
+              asChild={true}
+            >
+              <Link href={heroData.getStartedButton.link}>
+                <span>{heroData.getStartedButton.text}</span>
+                <ArrowRight />
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild={true}
+              className="hover:scale-105"
+            >
+              <Link href={heroData.requestDemoButton.link}>
+                <span>{heroData.requestDemoButton.text}</span>
+                <ArrowRight />
+              </Link>
+            </Button>
+          </div>
         </div>
         <div className="relative hidden md:block w-full">
           <Image
-            src={getImageUrl(imageUrl)}
-            alt="Hero Image"
+            src={getImageUrl(heroData.image.url)}
+            alt={heroData.image.alt}
             fill
-            style={{ objectFit: 'fill' }}
+            objectFit="contain"
             className="rounded-md"
           />
         </div>

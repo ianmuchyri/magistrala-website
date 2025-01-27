@@ -5,10 +5,10 @@ import Image from 'next/image';
 export function PoweredBy() {
   return (
     <section className="py-8 bg-white">
-      <div className="container mx-auto px-6">
-        <h3 className="text-center text-blue-950 font-semibold lg:text:3xl text-xl mb-8">
+      <div className="container mx-auto">
+        <h2 className="text-center text-blue-950 lg:text:3xl text-xl mb-8">
           POWERED BY
-        </h3>
+        </h2>
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-10">
           {poweredByPartners.map((partner) => (
             <a

@@ -22,12 +22,27 @@ export interface PricingPlan {
   ctaLink: string;
 }
 
-export function PricingCard({
-  title,
-  features,
-  ctaText,
-  ctaLink,
-}: PricingCardProps) {
+export function PricingSection({ plans }: PricingSectionProps) {
+  return (
+    <section id="pricing" className="py-20 bg-gray-50">
+      <div className="container mx-auto">
+        <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
+          Pricing
+        </h2>
+        <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">
+          Choose the plan that best fits your needs
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan) => (
+            <PricingCard key={plan.title} {...plan} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingCard({ title, features, ctaText, ctaLink }: PricingCardProps) {
   return (
     <Card className="flex flex-col p-8 transition-all hover:bg-blue-50">
       <h3 className="text-2xl font-bold text-center mb-8">{title}</h3>
@@ -50,25 +65,5 @@ export function PricingCard({
         <a href={ctaLink}>{ctaText}</a>
       </Button>
     </Card>
-  );
-}
-
-export function PricingSection({ plans }: PricingSectionProps) {
-  return (
-    <section id="pricing" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
-          Pricing
-        </h2>
-        <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">
-          Choose the plan that best fits your needs
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
-            <PricingCard key={plan.title} {...plan} />
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }

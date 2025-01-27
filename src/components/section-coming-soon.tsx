@@ -27,7 +27,7 @@ export function ComingSoonBanner() {
             <div
               // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for constants.ts
               key={index}
-              className="bg-white text-gray-800 rounded-lg shadow-lg p-6 flex items-center gap-4 transition-transform transform hover:scale-105"
+              className="bg-white text-gray-800 rounded-lg shadow-lg p-6 flex items-center gap-4"
             >
               <Image
                 src={feature.icon}

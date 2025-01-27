@@ -8,7 +8,7 @@ export function FooterNewsletter() {
     <div className="space-y-4">
       <h4 className="font-semibold">{title}</h4>
       <p className="text-sm text-muted-foreground">{subtitle}</p>
-      <form className="flex flex-col sm:flex-row gap-2">
+      <form className="flex flex-row items-center gap-2">
         <input
           type="email"
           placeholder={placeholder}

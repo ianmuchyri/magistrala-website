@@ -1,11 +1,11 @@
-import Footer from '@/components/ui/footer';
-import Header from '@/components/ui/header';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 import { getImageUrl } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import './globals.css';
 
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
   title: 'Magistrala',
