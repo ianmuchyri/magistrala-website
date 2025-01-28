@@ -4,13 +4,14 @@ import { ComingSoonBanner } from '@/components/section-coming-soon';
 import { FAQSection } from '@/components/section-faq';
 import { FeaturesSection } from '@/components/section-features';
 import { Hero } from '@/components/section-hero';
-import { PricingSection } from '@/components/section-pricing';
+import { IntroductionSection } from '@/components/section-introduction';
 import { UseCasesSection } from '@/components/section-usecase';
 
 export default function Home() {
   return (
     <div className="min-h-screen constant mx-auto">
       <Hero />
+      <IntroductionSection />
       <BenefitsSection />
       <PoweredBy />
       <FeaturesSection />

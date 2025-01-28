@@ -210,7 +210,7 @@ export const heroData = {
     link: '#',
   },
   image: {
-    url: 'abstract1.svg',
+    url: 'hero.webp',
     alt: 'Hero Image',
   },
 };
@@ -410,5 +410,20 @@ export const HeaderData = {
   ctaButton: {
     text: 'Try For Free',
     link: '#pricing',
+  },
+};
+
+export const IntroductionSectionData = {
+  sectionId: 'introduction',
+  title: 'What is Magistrala?',
+  imageUrl: 'magistrala-concept.png',
+  alt: 'Magistrala IoT Platform',
+  content: {
+    overview:
+      'Magistrala is a cutting-edge Software as a Service (SaaS) platform designed to empower businesses to connect, manage, and monitor their IoT devices and applications with ease. Formerly known as Mainflux, our platform offers a suite of tools and features that simplify the development and deployment of IoT solutions, enabling businesses to scale their operations and drive innovation. This platform provides a comprehensive suite of open-source frameworks, libraries and APIs that facilitate seamless connectivity between devices, applications, and systems, ensuring that businesses can easily manage and monitor their operations in real-time.',
+    security:
+      'Abstract Machines is committed to delivering software that is highly resilient against cyber threats. The platform incorporates advanced encryption protocols, robust security frameworks, and other essential tools, ensuring that developers can create IoT applications with the utmost security.',
+    community:
+      'Magistrala is also committed to fostering a thriving open-source community of developers and contributors. Through events, discussion forums, and extensive training support, developers can leverage Magistrala’s tools to build solutions with confidence.',
   },
 };
