@@ -8,7 +8,7 @@ import Link from 'next/link';
 export function Hero() {
   return (
     <section className="py-32 md:h-[95vh]">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2  space-y-2">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2  space-y-2">
         <div className="text-center md:text-left space-y-8">
           <h1 className="lg:text-6xl text-5xl mb-4 text-blue-950 tracking-tight">
             {heroData.title}
