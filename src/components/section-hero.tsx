@@ -46,6 +46,7 @@ export function Hero() {
             fill
             objectFit="contain"
             className="rounded-md"
+            priority
           />
         </div>
       </div>

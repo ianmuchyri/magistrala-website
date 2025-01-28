@@ -210,7 +210,7 @@ export const heroData = {
     link: '#',
   },
   image: {
-    url: 'abstract1.svg',
+    url: 'hero.webp',
     alt: 'Hero Image',
   },
 };
