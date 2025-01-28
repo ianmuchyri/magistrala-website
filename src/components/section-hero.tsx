@@ -13,7 +13,7 @@ export function Hero() {
           <h1 className="lg:text-6xl text-5xl mb-4 text-blue-950 tracking-tight">
             {heroData.title}
           </h1>
-          <p className="text-xl text-gray-800">{heroData.subtitle}</p>
+          <p className="text-xl text-gray-800 mr-2">{heroData.subtitle}</p>
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <Button
               size="lg"
