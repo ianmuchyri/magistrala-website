@@ -6,7 +6,7 @@ export function ComingSoonBanner() {
   return (
     <section
       id="pricing"
-      className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16 px-6 shadow-lg"
+      className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-32 px-6 shadow-lg "
     >
       <div
         className="absolute inset-0 -z-10 border-beam border-opacity-50"
@@ -27,7 +27,7 @@ export function ComingSoonBanner() {
             <div
               // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for constants.ts
               key={index}
-              className="bg-white text-gray-800 rounded-lg shadow-lg p-6 flex items-center gap-4 transition-transform transform hover:scale-105"
+              className="bg-white text-gray-800 rounded-lg shadow-lg p-6 flex items-center gap-4"
             >
               <Image
                 src={feature.icon}

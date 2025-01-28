@@ -6,7 +6,7 @@ export function FooterCopyright() {
 
   return (
     <div className="mt-12">
-      <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
         <p className="text-sm text-muted-foreground">
           &copy; {year} Abstract Machines. {rights}
         </p>
