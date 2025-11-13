@@ -240,19 +240,11 @@ section[id] {
     #memberships {
         padding-bottom: 8vh !important;
     }
-
-    #products {
-        margin-top: 8vh !important;
-    }
 }
 
 @media (min-width: 1800px) and (min-height: 900px) {
     #memberships {
         padding-bottom: 12vh !important;
-    }
-
-    #products {
-        margin-top: 12vh !important;
     }
 }
 
