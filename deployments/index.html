@@ -295,7 +295,7 @@
       const toDate = now.toISOString();
       
       // Set iframe src with date parameters
-      iframe.src = `https://deployments.abmach.eu/?from=${encodeURIComponent(fromDate)}&to=${encodeURIComponent(toDate)}&country=&city=&service=&version=&offcanvas=false`;
+      iframe.src = `https://deployments.absmach.eu/?from=${encodeURIComponent(fromDate)}&to=${encodeURIComponent(toDate)}`;
 
       iframe.onload = () => {
         loading.style.display = "none";
