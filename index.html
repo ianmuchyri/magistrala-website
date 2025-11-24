@@ -1602,19 +1602,7 @@
         const deploymentsLoading = document.getElementById("loading");
 
         if (deploymentsIframe && deploymentsLoading) {
-          // Calculate last month date range
-          const now = new Date();
-          const oneMonthAgo = new Date(
-            now.getTime() - 30 * 24 * 60 * 60 * 1000
-          );
-
-          const fromDate = oneMonthAgo.toISOString();
-          const toDate = now.toISOString();
-
-          // Set iframe src with date parameters
-          deploymentsIframe.src = `https://deployments.absmach.eu/?from=${encodeURIComponent(
-            fromDate
-          )}&to=${encodeURIComponent(toDate)}&offcanvas=false`;
+          deploymentsIframe.src = "https://deployments.absmach.eu?filter=hidden";
 
           deploymentsIframe.onload = () => {
             deploymentsLoading.style.display = "none";
