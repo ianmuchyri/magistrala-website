@@ -208,6 +208,137 @@
       </div>
     </section>
 
+    <!-- Our Partners Section -->
+    <section class="py-4 bg-light">
+      <div class="container">
+        <h2 class="text-center mt-5 mb-4">Our Clients and Partners</h2>
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 mt-5">
+            <div class="marquee-container" style="overflow: hidden; white-space: nowrap;">
+              <div class="marquee-content" style="display: inline-block; animation: marquee 30s linear infinite;">
+                <img
+                  src="../img/partners/etf.png"
+                  alt="ETF"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 70px"
+                />
+                <img
+                  src="../img/partners/eu.png"
+                  alt="EU Commission"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 70px"
+                />
+                <img
+                  src="../img/partners/fujitsu.png"
+                  alt="Fujitsu"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 70px"
+                />
+                <img
+                  src="../img/partners/greennet.png"
+                  alt="Greennet"
+                  class="img-fluid logo-img mx-3 my-4"
+                  style="max-height: 40px"
+                />
+                <img
+                  src="../img/partners/parc.png"
+                  alt="Intel"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 40px"
+                />
+                <img
+                  src="../img/partners/lf.png"
+                  alt="LF"
+                  class="img-fluid logo-img mx-3 my-3"
+                  style="max-height: 50px"
+                />
+                <img
+                  src="../img/partners/target.png"
+                  alt="Target"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 70px"
+                />
+                <img
+                  src="../img/partners/telefonica.png"
+                  alt="Telefonica"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 40px"
+                />
+                <img
+                  src="../img/partners/tno.png"
+                  alt="TNO"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 50px"
+                />
+                <img
+                  src="../img/partners/tue.png"
+                  alt="TUe"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 40px"
+                />
+                <img
+                  src="../img/partners/vtt.png"
+                  alt="VTT"
+                  class="img-fluid logo-img mx-3 my-2"
+                  style="max-height: 50px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <style>
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .marquee-container:hover .marquee-content {
+      animation-play-state: paused;
+    }
+    </style>
+    <!-- End of Our Partners Section -->
+
+    <!-- Deployments Section -->
+    <section id="deployments-preview" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mt-5 mb-4">
+            <h2>Global Magistrala Deployments</h2>
+            <p class="text-muted">
+              See real-time deployment statistics from around the world
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="iframe-container">
+              <!-- Loading Screen -->
+              <div id="loading" class="loading-overlay">
+                <div class="spinner"></div>
+                &nbsp; Loading deployments...
+              </div>
+              <iframe
+                id="deploymentsFrame"
+                style="width: 100%; height: 100%; border: none"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <a href="/deployments" class="btn btn-dark"
+              >View Full Deployments Dashboard</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Deployments Section -->
+
     <!-- Overview section -->
     <section
       id="overview"
@@ -269,48 +400,6 @@
     </section>
     <!-- End of What section -->
 
-        <!-- Deployments Section -->
-    <section
-      id="deployments-preview"
-      class="py-5"
-      
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center mt-5 mb-4">
-            <h2>Global Magistrala Deployments</h2>
-            <p class="text-muted">
-              See real-time deployment statistics from around the world
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="iframe-container">
-              <!-- Loading Screen -->
-              <div id="loading" class="loading-overlay">
-                <div class="spinner"></div>
-                &nbsp; Loading deployments...
-              </div>
-              <iframe
-                id="deploymentsFrame"
-                style="width: 100%; height: 100%; border: none"
-                loading="lazy"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-md-12 text-center">
-            <a href="/deployments" class="btn btn-dark"
-              >View Full Deployments Dashboard</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End of Deployments Section -->
-     
     <!-- Features section -->
     <section
       id="features"
@@ -1009,8 +1098,6 @@
     </section>
     <!-- End of Customer Listing section -->
 
-
-
     <!-- Pricing Section -->
     <section id="pricing" class="py-5" style="background-color: #f9fafb">
       <div class="container">
@@ -1534,9 +1621,7 @@
           // Set iframe src with date parameters
           deploymentsIframe.src = `https://deployments.absmach.eu/?from=${encodeURIComponent(
             fromDate
-          )}&to=${encodeURIComponent(
-            toDate
-          )}&offcanvas=false`;
+          )}&to=${encodeURIComponent(toDate)}&offcanvas=false`;
 
           deploymentsIframe.onload = () => {
             deploymentsLoading.style.display = "none";
