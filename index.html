@@ -1594,7 +1594,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></script>
     <script>
       // Deployments iframe setup
       document.addEventListener("DOMContentLoaded", function () {
@@ -1622,40 +1621,45 @@
         );
         const savingsText = document.getElementById("savings-text");
 
-        toggleButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            toggleButtons.forEach((btn) => btn.classList.remove("active"));
+        // Only setup pricing toggle if elements exist
+        if (toggleButtons.length > 0 && priceElements.length > 0) {
+          toggleButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+              toggleButtons.forEach((btn) => btn.classList.remove("active"));
 
-            this.classList.add("active");
+              this.classList.add("active");
 
-            const selectedPeriod = this.getAttribute("data-period");
+              const selectedPeriod = this.getAttribute("data-period");
 
-            updatePricing(selectedPeriod);
+              updatePricing(selectedPeriod);
+            });
           });
-        });
 
-        function updatePricing(period) {
-          priceElements.forEach((priceEl) => {
-            const yearlyPrice = parseInt(priceEl.getAttribute("data-yearly"));
-            const monthlyPrice = parseInt(priceEl.getAttribute("data-monthly"));
+          function updatePricing(period) {
+            priceElements.forEach((priceEl) => {
+              const yearlyPrice = parseInt(priceEl.getAttribute("data-yearly"));
+              const monthlyPrice = parseInt(priceEl.getAttribute("data-monthly"));
 
-            if (period === "yearly") {
-              priceEl.innerHTML = `€${yearlyPrice}<span class="fs-6 period-text">/month</span>`;
-            } else {
-              priceEl.innerHTML = `€${monthlyPrice}<span class="fs-6 period-text">/month</span>`;
+              if (period === "yearly") {
+                priceEl.innerHTML = `€${yearlyPrice}<span class="fs-6 period-text">/month</span>`;
+              } else {
+                priceEl.innerHTML = `€${monthlyPrice}<span class="fs-6 period-text">/month</span>`;
+              }
+            });
+
+            if (savingsText) {
+              if (period === "yearly") {
+                savingsText.textContent = "Save €50 with yearly billing!";
+                savingsText.className = "text-deep-blue";
+              } else {
+                savingsText.textContent = "Billed monthly";
+                savingsText.className = "text-muted";
+              }
             }
-          });
-
-          if (period === "yearly") {
-            savingsText.textContent = "Save €50 with yearly billing!";
-            savingsText.className = "text-deep-blue";
-          } else {
-            savingsText.textContent = "Billed monthly";
-            savingsText.className = "text-muted";
           }
-        }
 
-        updatePricing("yearly");
+          updatePricing("yearly");
+        }
       });
     </script>
 
@@ -1666,18 +1670,21 @@
         const navbarCollapse = document.querySelector("#secondaryNav");
         const navbarToggler = document.querySelector(".navbar-toggler");
 
-        navLinks.forEach(function (link) {
-          link.addEventListener("click", function () {
-            if (navbarCollapse.classList.contains("show")) {
-              const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                toggle: false,
-              });
-              bsCollapse.hide();
+        // Only setup if secondaryNav exists
+        if (navbarCollapse && navbarToggler && navLinks.length > 0) {
+          navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+              if (navbarCollapse.classList.contains("show")) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                  toggle: false,
+                });
+                bsCollapse.hide();
 
-              navbarToggler.setAttribute("aria-expanded", "false");
-            }
+                navbarToggler.setAttribute("aria-expanded", "false");
+              }
+            });
           });
-        });
+        }
       });
     </script>
   </body>
