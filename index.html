@@ -1590,7 +1590,7 @@
         const deploymentsLoading = document.getElementById("loading");
 
         if (deploymentsIframe && deploymentsLoading) {
-          deploymentsIframe.src = "https://deployments.absmach.eu?filter=hidden";
+          deploymentsIframe.src = "https://deployments.absmach.eu?filter=hidden&sidebar=hidden";
 
           deploymentsIframe.onload = () => {
             deploymentsLoading.style.display = "none";
