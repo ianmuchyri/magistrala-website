@@ -208,6 +208,130 @@
       </div>
     </section>
 
+    <!-- Our Partners Section -->
+    <section class="py-4 bg-light">
+      <div class="container">
+        <h2 class="text-center mt-5 mb-4">Our Clients and Partners</h2>
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 mt-5">
+            <div class="d-flex justify-content-center flex-wrap">
+              <img
+                src="../img/partners/target.png"
+                alt="Target"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 70px"
+              />
+              <img
+                src="../img/partners/greennet.png"
+                alt="Greennet"
+                class="img-fluid logo-img mx-3 my-4"
+                style="max-height: 40px"
+              />
+              <img
+                src="../img/partners/eu.png"
+                alt="EU Commission"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 70px"
+              />
+              <img
+                src="../img/partners/telefonica.png"
+                alt="Telefonica"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 40px"
+              />
+              <img
+                src="../img/partners/tue.png"
+                alt="TUe"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 40px"
+              />
+              <img
+                src="../img/partners/tno.png"
+                alt="TNO"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 50px"
+              />
+              <img
+                src="../img/partners/parc.png"
+                alt="Intel"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 40px"
+              />
+              <img
+                src="../img/partners/vtt.png"
+                alt="VTT"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 50px"
+              />
+              <img
+                src="../img/partners/etf.png"
+                alt="Target"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 70px"
+              />
+                            <img
+                src="../img/partners/fujitsu.png"
+                alt="Target"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 70px"
+              />
+                            <img
+                src="../img/partners/etf.png"
+                alt="Target"
+                class="img-fluid logo-img mx-3 my-2"
+                style="max-height: 70px"
+              />
+              <img
+                src="../img/partners/lf.png"
+                alt="LF"
+                class="img-fluid logo-img mx-3 my-3"
+                style="max-height: 50px"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Our Partners Section -->
+
+    <!-- Deployments Section -->
+    <section id="deployments-preview" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mt-5 mb-4">
+            <h2>Global Magistrala Deployments</h2>
+            <p class="text-muted">
+              See real-time deployment statistics from around the world
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="iframe-container">
+              <!-- Loading Screen -->
+              <div id="loading" class="loading-overlay">
+                <div class="spinner"></div>
+                &nbsp; Loading deployments...
+              </div>
+              <iframe
+                id="deploymentsFrame"
+                style="width: 100%; height: 100%; border: none"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <a href="/deployments" class="btn btn-dark"
+              >View Full Deployments Dashboard</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Deployments Section -->
+
     <!-- Overview section -->
     <section
       id="overview"
@@ -1472,6 +1596,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></script>
     <script>
+      // Deployments iframe setup
+      document.addEventListener("DOMContentLoaded", function () {
+        const deploymentsIframe = document.getElementById("deploymentsFrame");
+        const deploymentsLoading = document.getElementById("loading");
+
+        if (deploymentsIframe && deploymentsLoading) {
+          // Calculate last month date range
+          const now = new Date();
+          const oneMonthAgo = new Date(
+            now.getTime() - 30 * 24 * 60 * 60 * 1000
+          );
+
+          const fromDate = oneMonthAgo.toISOString();
+          const toDate = now.toISOString();
+
+          // Set iframe src with date parameters
+          deploymentsIframe.src = `https://deployments.absmach.eu/?from=${encodeURIComponent(
+            fromDate
+          )}&to=${encodeURIComponent(toDate)}&offcanvas=false`;
+
+          deploymentsIframe.onload = () => {
+            deploymentsLoading.style.display = "none";
+          };
+
+          // Safety timeout
+          setTimeout(() => {
+            deploymentsLoading.style.display = "none";
+          }, 10000);
+        }
+      });
+
       document.addEventListener("DOMContentLoaded", function () {
         const toggleButtons = document.querySelectorAll(".pricing-toggle .btn");
         const priceElements = document.querySelectorAll(
