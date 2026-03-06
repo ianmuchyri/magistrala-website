@@ -3,6 +3,9 @@ import Image from "next/image";
 const partners = [
   { name: "Target", src: "/partners/target.png", height: 50, width: 50 },
   { name: "Greennet", src: "/partners/greennet.png", height: 30, width: 150 },
+  { name: "Nokia", src: "/logos/nokia.png", height: 30, width: 150 },
+  { name: "Ericsson", src: "/logos/ericsson.png", height: 30, width: 200 },
+  { name: "Intel", src: "/logos/intel.png", height: 30, width: 100 },
   { name: "EU Commission", src: "/partners/eu.png", height: 50, width: 100 },
   {
     name: "Telefonica",
