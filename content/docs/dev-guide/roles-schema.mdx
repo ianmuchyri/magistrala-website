@@ -141,3 +141,124 @@ A `platform` is the highest-level entity that manages multiple organizations.
 
 - `admin`: Grants full administrative access.
 - `membership`: Allows managing platform membership.
+
+---
+
+## Magistrala Entities
+
+Each Magistrala service maps its API operations to SpiceDB permissions via the `docker/permission.yaml` configuration file. This file is loaded at startup and determines which permission is checked for each operation. The scope column in the tables below indicates whether the check is performed against the **domain** entity (broad, domain-wide access) or the **specific entity** (fine-grained, object-level access).
+
+### **Rules**
+
+A `rule` defines the conditions that trigger alarms. Rules support role management and can grant fine-grained alarm lifecycle permissions per rule.
+
+#### Rule Relations
+
+- `domain`: Associates a rule with a **domain**.
+- `alarm_read`: Grants permission to read/list alarms triggered by this rule.
+- `alarm_assign`: Grants permission to assign alarms triggered by this rule.
+- `alarm_acknowledge`: Grants permission to acknowledge alarms triggered by this rule.
+- `alarm_resolve`: Grants permission to resolve alarms triggered by this rule.
+
+#### Rule Permissions
+
+- `read_permission`: Allows viewing a rule.
+- `update_permission`: Allows updating a rule (including tags, schedule, enable, disable).
+- `delete_permission`: Allows deleting a rule.
+- `manage_role_permission`: Grants permission to manage roles for this rule.
+- `add_role_users_permission`: Grants permission to assign users to rule roles.
+- `remove_role_users_permission`: Grants permission to remove users from rule roles.
+- `view_role_users_permission`: Grants permission to view role members for this rule.
+- `alarm_read_permission`: Grants permission to read/list alarms produced by this rule.
+- `alarm_assign_permission`: Grants permission to assign alarms produced by this rule.
+- `alarm_acknowledge_permission`: Grants permission to acknowledge alarms produced by this rule.
+- `alarm_resolve_permission`: Grants permission to resolve alarms produced by this rule.
+- `rule_create_permission`: Grants permission to create rules in the domain.
+- `rule_read_permission`: Grants read access across all rules in the domain.
+- `rule_update_permission`: Grants update access across all rules in the domain (includes tags, schedule, enable, and disable).
+- `rule_delete_permission`: Grants delete access across all rules in the domain.
+- `rule_manage_role_permission`: Grants permission to manage roles for rules in the domain.
+- `rule_add_role_users_permission`: Grants permission to assign users to rule roles across the domain.
+- `rule_remove_role_users_permission`: Grants permission to remove users from rule roles across the domain.
+- `rule_view_role_users_permission`: Grants permission to view rule role members across the domain.
+
+#### Rule Operations and Required Permissions
+
+| Operation            | SpiceDB Permission              | Scope  |
+| -------------------- | ------------------------------- | ------ |
+| Add Rule             | `rule_create_permission`        | Domain |
+| List Rules           | `rule_read_permission`          | Domain |
+| View Rule            | `read_permission`               | Rule   |
+| Update Rule          | `update_permission`             | Rule   |
+| Update Rule Tags     | `update_permission`             | Rule   |
+| Update Schedule      | `update_permission`             | Rule   |
+| Enable Rule          | `update_permission`             | Rule   |
+| Disable Rule         | `update_permission`             | Rule   |
+| Delete Rule          | `delete_permission`             | Rule   |
+| Assign Alarm         | `alarm_assign_permission`       | Rule   |
+| Acknowledge Alarm    | `alarm_acknowledge_permission`  | Rule   |
+| Resolve Alarm        | `alarm_resolve_permission`      | Rule   |
+
+---
+
+### **Alarms**
+
+An `alarm` represents a triggered condition detected by a rule. Alarms do **not** have their own SpiceDB entity definition — access control is fully covered by the **rule** entity relations (`alarm_read`, `alarm_assign`, `alarm_acknowledge`, `alarm_resolve`) and the corresponding domain-level permissions listed in the [Rules](#rules) section above.
+
+#### Alarm Operations and Required Permissions
+
+| Operation         | SpiceDB Permission              | Scope  |
+| ----------------- | ------------------------------- | ------ |
+| List Alarms       | `alarm_read_permission`         | Domain |
+| View Alarm        | `alarm_read_permission`         | Domain |
+| Delete Alarm      | `alarm_delete_permission`       | Domain |
+| Assign Alarm      | `alarm_assign_permission`       | Domain |
+| Acknowledge Alarm | `alarm_acknowledge_permission`  | Domain |
+| Resolve Alarm     | `alarm_resolve_permission`      | Domain |
+
+> **Note:** The `UpdateAlarm` API endpoint internally dispatches to the `assign`, `acknowledge`, or `resolve` permission check depending on which field is set in the request body. There is no generic `update` permission for alarms.
+
+---
+
+### **Reports**
+
+A `report` is a scheduled or on-demand document generated from time-series IoT data. Report configurations support role management for fine-grained access control.
+
+#### Report Relations
+
+- `domain`: Associates a report configuration with a **domain**.
+
+#### Report Permissions
+
+- `read_permission`: Allows viewing a report configuration.
+- `update_permission`: Allows updating a report configuration (including schedule, template, enable, disable).
+- `delete_permission`: Allows deleting a report configuration.
+- `manage_role_permission`: Grants permission to manage roles for this report configuration.
+- `add_role_users_permission`: Grants permission to assign users to report roles.
+- `remove_role_users_permission`: Grants permission to remove users from report roles.
+- `view_role_users_permission`: Grants permission to view role members for this report configuration.
+- `report_create_permission`: Grants permission to create report configurations in the domain.
+- `report_read_permission`: Grants read access across all report configurations in the domain.
+- `report_update_permission`: Grants update access across all report configurations in the domain (includes enable/disable/schedule/template updates).
+- `report_delete_permission`: Grants delete access across all report configurations in the domain.
+- `report_manage_role_permission`: Grants permission to manage roles for reports in the domain.
+- `report_add_role_users_permission`: Grants permission to assign users to report roles across the domain.
+- `report_remove_role_users_permission`: Grants permission to remove users from report roles across the domain.
+- `report_view_role_users_permission`: Grants permission to view report role members across the domain.
+
+#### Report Operations and Required Permissions
+
+| Operation             | SpiceDB Permission          | Scope  |
+| --------------------- | --------------------------- | ------ |
+| Add Report Config     | `report_create_permission`  | Domain |
+| List Report Configs   | `report_read_permission`    | Domain |
+| Generate Report       | `report_read_permission`    | Domain |
+| View Report Config    | `read_permission`           | Report |
+| Update Report Config  | `update_permission`         | Report |
+| Update Schedule       | `update_permission`         | Report |
+| Enable Report Config  | `update_permission`         | Report |
+| Disable Report Config | `update_permission`         | Report |
+| Delete Report Config  | `delete_permission`         | Report |
+| Update Template       | `update_permission`         | Report |
+| View Template         | `read_permission`           | Report |
+| Delete Template       | `delete_permission`         | Report |
