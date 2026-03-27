@@ -7,6 +7,7 @@ import { HeroSection } from "@/components/landing/hero";
 import { PartnersMarquee } from "@/components/landing/partners";
 import { PricingSection } from "@/components/landing/pricing";
 import { ScrollToTop } from "@/components/landing/scroll-to-top";
+import { SolutionsGrid } from "@/components/landing/solutions";
 import { SuccessStories } from "@/components/landing/success-stories";
 import { UseCases } from "@/components/landing/use-cases";
 import { WhyMagistrala } from "@/components/landing/why-magistrala";
@@ -116,6 +117,7 @@ export default function HomePage() {
       />
       <HeroSection />
       <PartnersMarquee />
+      <SolutionsGrid />
       <FeaturesSection />
       <WhyMagistrala />
       <GlobalDeployments />
