@@ -112,7 +112,9 @@ export function SolutionsGrid() {
           </p>
           <h2 className="text-3xl font-medium tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] leading-[1.1] mb-4">
             {SOLUTIONS_CONTENT.heading.title}{" "}
-            <span className="text-muted-foreground">{SOLUTIONS_CONTENT.heading.titleAccent}</span>
+            <span className="text-muted-foreground">
+              {SOLUTIONS_CONTENT.heading.titleAccent}
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             {SOLUTIONS_CONTENT.heading.description}

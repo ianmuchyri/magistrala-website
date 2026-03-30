@@ -127,6 +127,7 @@ export async function HeroSection() {
                 className="absolute inset-0 w-full h-full pointer-events-none text-slate-300 dark:text-slate-700"
                 viewBox="0 0 550 450"
                 fill="none"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>

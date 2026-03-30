@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export function RBACLogos() {
+export function RBACVisual() {
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-8 sm:py-12">
       <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
@@ -65,6 +65,7 @@ export function RBACLogos() {
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
         </div>
+
         <div className="flex flex-col items-center gap-3 p-6 px-8 rounded-xl border border-border/40 bg-card shadow-sm">
           <Image
             src="/logos/jwt.png"
