@@ -37,6 +37,16 @@ export const homepageFaqs: FAQItem[] = [
     answer:
       "Yes. Magistrala supports integration with external MQTT brokers using protocol adapters and bridge configurations, with token-based authentication and fine-grained access control. Compatible with Mosquitto, EMQX, and others.",
   },
+  {
+    question: "What are Magistrala Solution Packs?",
+    answer:
+      "Magistrala Solution Packs are pre-configured IoT application templates that include industry-specific device groups, communication channels, data analysis rules, real-time dashboards, and automated report generators. They allow organizations to deploy production-ready solutions for use cases like smart energy, water metering, and cold chain in minutes rather than months.",
+  },
+  {
+    question: "Can I customize a Solution Pack?",
+    answer:
+      "Yes. Every Solution Pack is fully customizable. Once deployed, you can modify dashboards, add custom rules, integrate additional sensor types, and scale the number of clients to meet your specific operational needs while benefiting from the pre-built architectural foundations.",
+  },
 ];
 
 export interface FAQSectionProps {
