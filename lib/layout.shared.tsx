@@ -2,6 +2,51 @@ import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
 
+const solutionItems = [
+  {
+    text: "Smart City",
+    url: "/solutions/smart-city",
+    description:
+      "Unify traffic, energy, and civic infrastructure in one dashboard.",
+  },
+  {
+    text: "Smart Water Metering",
+    url: "/solutions/smart-water",
+    description: "Eliminate NRW and automate AMI billing in real time.",
+  },
+  {
+    text: "Smart Energy",
+    url: "/solutions/smart-energy",
+    description: "Balance grid loads and monitor renewable generation.",
+  },
+  {
+    text: "Cold Storage",
+    url: "/solutions/cold-storage",
+    description: "HACCP-compliant cold chain monitoring across all zones.",
+  },
+  {
+    text: "Smart Farming",
+    url: "/solutions/smart-farming",
+    description: "Precision irrigation and crop stress monitoring.",
+  },
+  {
+    text: "Oil & Gas",
+    url: "/solutions/oil-gas",
+    description: "Pipeline integrity monitoring and predictive maintenance.",
+  },
+  {
+    text: "Smart Irrigation",
+    url: "/solutions/smart-irrigation",
+    description:
+      "Sensor-driven irrigation schedules that eliminate water waste.",
+  },
+  {
+    text: "Air Quality",
+    url: "/solutions/air-quality",
+    description: "Track PM2.5, CO₂, and pollutants with regulatory reporting.",
+  },
+] as const;
+
 export const linkItems: LinkItemType[] = [
   {
     text: "Features",
@@ -9,9 +54,14 @@ export const linkItems: LinkItemType[] = [
     active: "url",
   },
   {
-    text: "Use Cases",
-    url: "/use-cases",
-    active: "url",
+    type: "menu",
+    text: "Solutions",
+    url: "/solutions",
+    items: solutionItems.map((s) => ({
+      text: s.text,
+      url: s.url,
+      description: s.description,
+    })),
   },
   {
     text: "Pricing",

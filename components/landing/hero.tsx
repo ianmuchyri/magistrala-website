@@ -15,8 +15,8 @@ const HERO_CONTENT = {
   description:
     "Skip complex setups. Launch IoT and industrial solutions instantly, then customize every layer with a powerful, open-source platform.",
   primaryAction: {
-    label: "Explore Solutions",
-    href: "/solutions",
+    label: "Try Magistrala",
+    href: "https://cloud.magistrala.absmach.eu/en?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home-page",
   },
 
   secondaryAction: {
@@ -84,9 +84,7 @@ export async function HeroSection() {
             </div>
 
             <h1 className="text-5xl font-medium tracking-tight text-foreground sm:text-6xl lg:text-[4.5rem] leading-[1.05] mb-6">
-              <span className="text-[#073763] dark:text-blue-400">
-                {HERO_CONTENT.titleLine1}
-              </span>
+              <span className="text-primary">{HERO_CONTENT.titleLine1}</span>
               <br />
               {HERO_CONTENT.titleLine2}
             </h1>

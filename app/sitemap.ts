@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { MetadataRoute } from "next";
+import { solutions } from "@/lib/solutions-data";
 import { source } from "@/lib/source";
 import { useCases } from "@/lib/use-cases-data";
 
@@ -69,6 +70,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${DOMAIN}${page.url}`,
       priority: 0.7,
       changeFrequency: "weekly",
+    });
+  }
+
+  for (const solution of solutions) {
+    pages.push({
+      url: `${DOMAIN}/solutions/${solution.slug}/`,
+      lastModified: new Date(),
     });
   }
 
