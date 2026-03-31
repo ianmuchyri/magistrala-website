@@ -1,16 +1,34 @@
 import type { Metadata } from "next/types";
 
+function resolveTitle(title: Metadata["title"]): string {
+  if (!title) return "Magistrala — Open-Source IoT Platform for Cloud & Edge";
+  if (typeof title === "string") return title;
+  if ("default" in title && title.default) return title.default;
+  return "Magistrala — Open-Source IoT Platform for Cloud & Edge";
+}
+
 export function createMetadata(
   override: Metadata,
   ogSlug = "magistrala",
 ): Metadata {
   const ogUrl = `${baseUrl}/og/${ogSlug}/image.webp`;
+  const resolvedTitle = resolveTitle(override.title);
+  const canonicalUrl =
+    override.alternates?.canonical ??
+    (override.openGraph?.url as string | URL | undefined);
+  const alternates = canonicalUrl
+    ? {
+        ...override.alternates,
+        canonical: canonicalUrl,
+      }
+    : override.alternates;
+  const openGraphUrl = override.openGraph?.url;
   return {
     ...override,
+    ...(alternates ? { alternates } : {}),
     openGraph: {
-      title: override.title ?? "Magistrala",
+      title: resolvedTitle,
       description: override.description ?? undefined,
-      url: baseUrl,
       images: [
         {
           url: ogUrl,
@@ -20,13 +38,14 @@ export function createMetadata(
         },
       ],
       siteName: "Magistrala",
+      ...(openGraphUrl ? { url: openGraphUrl } : {}),
       ...override.openGraph,
     },
     twitter: {
       card: "summary_large_image",
       site: "@absmach",
       creator: "@absmach",
-      title: override.title ?? "Magistrala",
+      title: resolvedTitle,
       description: override.description ?? undefined,
       images: [
         {

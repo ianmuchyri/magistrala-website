@@ -8,10 +8,12 @@ const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
 export const metadata = createMetadata({
   title: {
     template: "%s | Magistrala",
-    default: "Magistrala",
+    default: "Magistrala — Open-Source IoT Platform for Cloud & Edge",
   },
-  description: "Open-source IoT platform for cloud and edge.",
+  description:
+    "Magistrala is an open-source IoT platform with multi-protocol support (MQTT, CoAP, HTTP, WebSocket), device management, and RBAC — built for cloud and edge.",
   metadataBase: baseUrl,
+  openGraph: { url: `${baseUrl}/` },
 });
 
 export default function Layout({ children }: LayoutProps<"/">) {
