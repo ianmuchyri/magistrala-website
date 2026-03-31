@@ -106,6 +106,9 @@ export interface Solution {
 
   benefits: string[];
 
+  // FAQ ──────────────────────────────────────────────────────────────────
+  faq: { question: string; answer: string }[];
+
   // SEO ──────────────────────────────────────────────────────────────────
   metaDescription: string;
   keywords: string[];
@@ -278,6 +281,31 @@ export const solutions: Solution[] = [
       "Built-in multi-tenancy lets each city department manage their own view",
       "Open source core means no vendor lock-in — extend as your needs grow",
       "Enterprise-grade security with per-device credentials and role-based access control",
+    ],
+
+    faq: [
+      {
+        question:
+          "Can Magistrala integrate with existing city management software?",
+        answer:
+          "Yes. Magistrala exposes REST and WebSocket APIs that integrate with GIS platforms, ERP systems, and city dashboards such as Esri ArcGIS and SAP. Webhook sinks push events directly to existing ticketing and dispatch systems without requiring replacement of front-end tools.",
+      },
+      {
+        question: "How do you handle multi-tenancy across city departments?",
+        answer:
+          "Magistrala uses domain-level isolation backed by SpiceDB policies. Each department (traffic, utilities, waste) operates in its own domain with its own device groups, channels, and user roles. Cross-domain data sharing is configured explicitly through policy grants — departments see only what they are authorized to see.",
+      },
+      {
+        question:
+          "What happens if connectivity to the central platform is lost?",
+        answer:
+          "Edge gateway nodes buffer messages locally during connectivity gaps and replay them in order once the link is restored. Time-series data arrives with original device timestamps, so dashboards and rules engines reconstruct accurate event sequences without gaps.",
+      },
+      {
+        question: "How quickly can the Smart City pack be deployed?",
+        answer:
+          "The pre-configured pack installs on Magistrala Cloud in minutes — clients, channels, rules, dashboards, and alarms are all included. Custom device types and additional integrations can be added incrementally without taking the core platform offline.",
+      },
     ],
 
     metaDescription:
@@ -456,6 +484,30 @@ export const solutions: Solution[] = [
       "Eliminate billing disputes with validated, tamper-evident meter data",
       "Meet regulatory reporting requirements with built-in NRW and compliance templates",
       "Scale from pilot DMA to full network without re-architecting — add meters in minutes",
+    ],
+
+    faq: [
+      {
+        question: "What connectivity options are supported for field meters?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Field meters using LoRaWAN, NB-IoT, or cellular backhaul connect via an external protocol adapter or gateway that translates their data into one of the native protocols. Devices authenticate with pre-shared keys or X.509 certificates.",
+      },
+      {
+        question: "Can Magistrala integrate with our existing SCADA system?",
+        answer:
+          "Yes. Magistrala exposes a webhook-based alert sink and a REST API for time-series data retrieval. Most SCADA platforms consume webhook POST calls or poll the Magistrala API directly. For OPC-UA-based SCADA systems, an adapter exposes Magistrala channels as OPC-UA nodes.",
+      },
+      {
+        question: "How is access to meter data controlled across teams?",
+        answer:
+          "Magistrala implements fine-grained RBAC via SpiceDB, scoped to domains, groups, and individual channels. A field technician can be granted read-only access to their assigned district metered area while a billing analyst has export access to consumption data but no alarm management permissions.",
+      },
+      {
+        question:
+          "What infrastructure is needed to deploy Magistrala for water metering?",
+        answer:
+          "A single-node Docker Compose deployment handles approximately 10,000 connected meters at 15-minute reporting intervals. For larger networks, Kubernetes deployment with horizontal scaling handles millions of messages per hour. Magistrala is also available as a managed cloud service.",
+      },
     ],
 
     metaDescription:
@@ -638,6 +690,32 @@ export const solutions: Solution[] = [
       "Multi-tenant architecture lets distribution companies serve multiple network operators from one platform",
     ],
 
+    faq: [
+      {
+        question:
+          "What grid protocols and device types does the Smart Energy pack support?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Smart meters and inverters using Modbus, IEC 61850, or DNP3 connect via an external protocol adapter that translates readings into one of the native protocols. New device types can be registered and mapped without redeploying the platform.",
+      },
+      {
+        question: "How does demand response automation work?",
+        answer:
+          "Demand response rules monitor real-time load and generation data against configurable thresholds. When a threshold is breached, the rules engine triggers load-shedding commands, notifies dispatch operators, and logs the event for regulatory reporting — all without manual intervention.",
+      },
+      {
+        question:
+          "Can we monitor multiple grid zones or substations from one platform?",
+        answer:
+          "Yes. Magistrala's multi-tenant architecture lets you organize substations, feeders, and distributed energy resources into separate domains with their own access policies. A grid operator dashboard aggregates across all zones while individual domain views remain isolated.",
+      },
+      {
+        question:
+          "How is power quality event data handled for compliance reporting?",
+        answer:
+          "Sub-second telemetry resolution captures voltage sags, harmonics, and frequency deviations as they occur. Automated daily and monthly compliance reports are generated from raw event data, exportable in formats accepted by most regulatory submission portals.",
+      },
+    ],
+
     metaDescription:
       "Deploy smart grid monitoring and energy management in minutes. The Magistrala Smart Energy Pack includes pre-configured inverters, meters, demand response rules, and grid dashboards.",
     keywords: [
@@ -816,6 +894,29 @@ export const solutions: Solution[] = [
       "HACCP-compliant alert thresholds are pre-configured and can be customized per zone or product type",
       "Multi-site visibility from a single dashboard — manage warehouses, transport, and retail from one platform",
       "Full alarm acknowledgment tracking with responsible-party attribution for regulatory accountability",
+    ],
+
+    faq: [
+      {
+        question: "Which temperature sensor types and protocols are supported?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Cold chain loggers using proprietary wireless protocols (BLE, Zigbee, LoRaWAN) or wired buses (RS-485, 1-Wire) connect via an external protocol adapter or gateway. Sensors from major cold chain hardware vendors are supported this way without firmware changes.",
+      },
+      {
+        question: "How does the system handle HACCP threshold breaches?",
+        answer:
+          "Pre-configured HACCP rules evaluate temperature readings in real time. When a threshold breach is detected, the platform immediately fires alerts to responsible parties via email, SMS, and webhook, logs the event with device ID and timestamp, and requires acknowledgment before clearing — maintaining a full audit trail.",
+      },
+      {
+        question: "Can I manage cold chain monitoring across multiple sites?",
+        answer:
+          "Yes. Each facility, vehicle, or retail location is a separate domain with its own device groups, alert rules, and user roles. A central operations dashboard aggregates status across all sites, while site managers see only their own assets.",
+      },
+      {
+        question: "How are compliance reports generated for audits?",
+        answer:
+          "Automated daily, weekly, and monthly reports are generated from raw sensor data and exported in PDF or CSV formats. Reports include exceedance summaries, acknowledgment records, and mean kinetic temperature calculations — ready for submission to food safety and pharmaceutical regulatory bodies.",
+      },
     ],
 
     metaDescription:
@@ -998,6 +1099,30 @@ export const solutions: Solution[] = [
       "Improve yield predictability by correlating sensor data with historical crop performance",
       "Scale from pilot field to full farm without re-configuration — add sensors in minutes",
       "Comply with water use regulations and sustainability audits with automated water consumption reports",
+    ],
+
+    faq: [
+      {
+        question: "What types of agricultural sensors does the pack support?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Sensors using SDI-12, RS-485, or LoRaWAN connect via an external protocol adapter or gateway that forwards readings into one of the native protocols. Weather stations, leaf wetness sensors, and dendrometers from major agri-hardware vendors are supported this way.",
+      },
+      {
+        question: "How does automated irrigation scheduling work?",
+        answer:
+          "Irrigation rules evaluate real-time soil moisture readings against configurable VWC thresholds for each field zone. When moisture drops below the target level, the rules engine opens the relevant valve controller and logs the irrigation event. Rain sensor inputs override scheduled runs automatically.",
+      },
+      {
+        question: "Can I monitor multiple farms or fields from one platform?",
+        answer:
+          "Yes. Each farm, field, or crop zone is an isolated domain with its own sensors, rules, and dashboards. A farm manager sees their own operations while an agronomist account can be granted cross-farm read access for advisory purposes — all enforced by fine-grained RBAC.",
+      },
+      {
+        question:
+          "How does the platform help with water regulation compliance?",
+        answer:
+          "Automated water usage logs record every irrigation event with volume, duration, and zone data. Monthly reports are generated from this data and can be exported for submission to water authorities. Configurable water budget rules prevent over-allocation by blocking additional irrigation runs when seasonal limits are reached.",
+      },
     ],
 
     metaDescription:
@@ -1183,6 +1308,30 @@ export const solutions: Solution[] = [
       "Industrial-grade security with per-asset credentials, encrypted telemetry, and full audit trails",
     ],
 
+    faq: [
+      {
+        question: "What industrial protocols does the Oil & Gas pack support?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Industrial field instruments using Modbus, HART, or OPC-UA connect via an external protocol adapter that translates readings into one of the native protocols. Pressure transmitters, flow meters, gas detectors, and vibration sensors from major vendors are supported this way.",
+      },
+      {
+        question: "How are safety-critical alarms managed and escalated?",
+        answer:
+          "Safety-critical rules evaluate sensor data against configurable thresholds in real time. Breaches trigger immediate multi-channel alerts — email, SMS, and SCADA webhooks — with mandatory acknowledgment workflows. Unacknowledged alarms auto-escalate to the next responsible party on a configurable schedule.",
+      },
+      {
+        question:
+          "Can the platform operate in remote or intermittent-connectivity environments?",
+        answer:
+          "Yes. Edge gateway nodes buffer messages locally during connectivity gaps and replay them in order when the link is restored. Time-series data arrives with original device timestamps, ensuring dashboards and analytics reflect accurate event sequences without data gaps.",
+      },
+      {
+        question: "How does predictive maintenance work with the pack?",
+        answer:
+          "Vibration and temperature data from rotating equipment is evaluated against baseline profiles and configurable anomaly rules. When degradation patterns emerge — rising bearing temperature, abnormal vibration frequency — alerts fire before failure occurs, enabling planned maintenance instead of emergency shutdowns.",
+      },
+    ],
+
     metaDescription:
       "Deploy pipeline integrity monitoring and predictive maintenance IoT infrastructure in minutes. The Magistrala Oil & Gas Pack includes pre-configured sensors, leak detection rules, and safety dashboards.",
     keywords: [
@@ -1361,6 +1510,32 @@ export const solutions: Solution[] = [
       "Comply with water authority restrictions using built-in water budget rules and usage reporting",
       "Detect irrigation leaks automatically with flow meter anomaly detection",
       "Scale from single site to multi-property portfolio without re-configuration — add zones instantly",
+    ],
+
+    faq: [
+      {
+        question: "What irrigation controllers and valve types are supported?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Valve controllers that publish over MQTT connect directly. Controllers using Modbus or proprietary protocols connect via an external adapter. Valve open/close commands are published through Magistrala channels and execute with sub-second latency.",
+      },
+      {
+        question:
+          "How does soil moisture-based scheduling differ from timer-based systems?",
+        answer:
+          "Timer-based systems water on a fixed schedule regardless of actual soil conditions — leading to overwatering after rain or underwatering during heat spikes. Magistrala evaluates real-time volumetric water content and only opens valves when moisture genuinely drops below the target threshold for each zone.",
+      },
+      {
+        question:
+          "Can I manage irrigation across multiple properties or sites?",
+        answer:
+          "Yes. Each property or irrigation zone is an isolated domain with its own sensors, valve rules, and dashboards. A portfolio manager can view water usage and system status across all sites from a single aggregated dashboard, while site operators manage only their own zones.",
+      },
+      {
+        question:
+          "How are water authority restrictions enforced automatically?",
+        answer:
+          "Configurable water budget rules track cumulative usage per day, week, or month. When a site approaches its permitted allocation, the rules engine throttles irrigation runs and alerts the operator. Rain sensor overrides and ET-based adjustments can be layered on top to further reduce waste.",
+      },
     ],
 
     metaDescription:
@@ -1544,6 +1719,32 @@ export const solutions: Solution[] = [
       "Deploy anywhere from urban ambient networks to industrial boundary monitoring with the same platform",
       "WHO, EPA, and EU Air Quality Directive thresholds are pre-configured and adjustable per jurisdiction",
       "Multi-tenant architecture lets environmental agencies manage multiple operator networks from one platform",
+    ],
+
+    faq: [
+      {
+        question:
+          "What pollutants and sensor types does the Air Quality pack support?",
+        answer:
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Air quality sensors reporting over MQTT connect directly. Sensors using Modbus or LoRaWAN connect via an external protocol adapter. PM2.5, PM10, NO2, O3, CO, SO2, VOC, and CO2 sensors from major vendors are supported this way, both indoors and outdoors.",
+      },
+      {
+        question:
+          "How are AQI thresholds configured for different regulatory standards?",
+        answer:
+          "WHO, US EPA, and EU Air Quality Directive thresholds are pre-configured as default rule templates. Each threshold set is adjustable per sensor, location, or jurisdiction. Regulatory standard updates can be applied by editing rule parameters without touching platform code.",
+      },
+      {
+        question:
+          "How does the platform handle multi-site monitoring networks?",
+        answer:
+          "Each monitoring station or network zone is organized as a Magistrala domain with its own sensors, rules, and access policies. Environmental agencies can manage multiple operator networks from a single platform while maintaining strict data isolation between clients.",
+      },
+      {
+        question: "How are automated compliance reports generated?",
+        answer:
+          "Compliance reports are generated on a configurable daily, weekly, or monthly schedule from raw sensor data. Reports include hourly averages, exceedance counts, and station metadata in formats accepted by major regulatory submission portals. Data exports are available in CSV and JSON.",
+      },
     ],
 
     metaDescription:

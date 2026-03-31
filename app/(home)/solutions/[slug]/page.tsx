@@ -9,6 +9,7 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FAQSection } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
 import { DashboardCarousel } from "@/components/solutions/dashboard-carousel";
 import { Button } from "@/components/ui/button";
@@ -289,6 +290,14 @@ export default async function SolutionDetailPage({
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      <FAQSection
+        items={solution.faq}
+        title={`${solution.title} — Frequently Asked Questions`}
+        id={`faq-${solution.slug}`}
+        withSchema
+      />
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
       <section className="py-10 px-6">

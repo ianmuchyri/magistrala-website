@@ -1,6 +1,7 @@
 import { ArrowRight, Package } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FAQSection, solutionsFaqs } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/metadata";
@@ -103,6 +104,14 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <FAQSection
+        items={solutionsFaqs}
+        title="Frequently asked questions about Solution Packs"
+        id="faq"
+        withSchema
+      />
 
       {/* ── CTA ────────────────────────────────────────────────────────── */}
       <section className="py-10 px-6">
