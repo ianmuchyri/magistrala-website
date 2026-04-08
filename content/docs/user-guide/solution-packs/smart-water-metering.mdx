@@ -22,9 +22,9 @@ Operators work with five pre-built dashboards: a KPI summary, a real-time monito
 
 **End-to-end telemetry pipeline.** The pack provisions three channels (Raw Telemetry, Processed Data, Alerts), five device clients covering the full sensor suite, and three groups for access control. Incoming SenML records are validated against field-specific safe ranges before any downstream rule processes them, so detection logic never acts on corrupted data.
 
-![Provisioned device clients](../../img/solutions/smart-water-meter/solution-clients.png)
+![Provisioned device clients](/screenshots/solutions/smart-water-metering/solution-clients.png)
 
-![Provisioned channels](../../img/solutions/smart-water-meter/solution-channels.png)
+![Provisioned channels](/screenshots/solutions/smart-water-metering/solution-channels.png)
 
 **Multi-threshold leak and burst detection.** Leak Detection raises a Warning (Severity 3) when flow_rate reaches 8 L/min alongside pressure below 2.5 bar — the combination that indicates a slow distribution leak. It escalates to Critical (Severity 5) when flow_rate reaches 20 L/min regardless of pressure. Burst Detection adds a Critical alarm when flow_rate reaches 50 L/min with pressure at or below 1.5 bar, and a High alarm (Severity 4) when flow_rate reaches 80 L/min even without pressure confirmation.
 
@@ -34,15 +34,15 @@ Operators work with five pre-built dashboards: a KPI summary, a real-time monito
 
 **Role-differentiated dashboards and templates.** The five pre-built dashboards serve different audiences: the KPI Dashboard gives management a single-screen summary; the Real-Time Monitoring Dashboard gives operators live situational awareness; the Alarm Monitoring Dashboard provides a triage centre for open alarms by severity; the Network Map Dashboard supports field planning; and the Consumption Analytics Dashboard drives demand forecasting. The Zone Monitoring and Customer Consumption templates use tag-based device references so a single template definition scales to any number of zones or customer accounts.
 
-![Provisioned dashboards](../../img/solutions/smart-water-meter/solution-dashboards.png)
+![Provisioned dashboards](/screenshots/solutions/smart-water-metering/solution-dashboards.png)
 
 **Automated reporting.** Three report schedules cover daily consumption (sum of total_volume), weekly network performance (average pressure, flow, energy, and tank level), and weekly water quality compliance (average pH, turbidity, TDS, and temperature). The compliance report delivers to two recipients to support internal QA and regulatory submission workflows.
 
-![Provisioned report schedules](../../img/solutions/smart-water-meter/solution-reports.png)
+![Provisioned report schedules](/screenshots/solutions/smart-water-metering/solution-reports.png)
 
 **Long-term data archival.** The Data Archival rule filters processed records for the eight metrics most relevant to regulatory and operational reporting — flow_rate, total_volume, pressure, ph, turbidity, tank_level, energy, and pump_status — and writes them to an external PostgreSQL database.
 
-![Provisioned automation rules](../../img/solutions/smart-water-meter/solution-rules.png)
+![Provisioned automation rules](/screenshots/solutions/smart-water-metering/solution-rules.png)
 
 ## Getting Started
 
@@ -129,7 +129,7 @@ The KPI Dashboard gives operations managers and utility executives a snapshot of
 
 **Pump Control** is a switch widget that lets operators toggle the pump controller on or off directly from the dashboard. It sends a control command to the Pump Controller client on the Raw Telemetry Channel.
 
-![KPI Dashboard](../../img/solutions/smart-water-meter/kpi-dashboard.png)
+![KPI Dashboard](/screenshots/solutions/smart-water-metering/kpi-dashboard.png)
 
 ### Real-Time Monitoring Dashboard
 
@@ -147,7 +147,7 @@ The KPI Dashboard gives operations managers and utility executives a snapshot of
 
 **Pump Energy Consumption** is a bar chart showing the hourly average `energy` reading over the past 24 hours. It supports energy efficiency tracking and helps identify pump cycles that consume more power than expected.
 
-![Real-Time Monitoring Dashboard](../../img/solutions/smart-water-meter/real-time-dashboard.png)
+![Real-Time Monitoring Dashboard](/screenshots/solutions/smart-water-metering/real-time-dashboard.png)
 
 ### Network Map Dashboard
 
@@ -155,7 +155,7 @@ The KPI Dashboard gives operations managers and utility executives a snapshot of
 
 **District Metered Areas** is a polygon map widget that renders DMA zone boundaries as filled polygons. Zone boundary coordinates are configured as metadata on the relevant group. This widget supports visual identification of which DMA is affected when a zone-level alarm fires.
 
-![Network Map Dashboard](../../img/solutions/smart-water-meter/networks-dashboard.png)
+![Network Map Dashboard](/screenshots/solutions/smart-water-metering/networks-dashboard.png)
 
 ### Consumption Analytics Dashboard
 
@@ -165,7 +165,7 @@ The KPI Dashboard gives operations managers and utility executives a snapshot of
 
 **Monthly Volume Comparison** is a bar chart showing the monthly sum of `total_volume` across the most recent three calendar months. It supports Non-Revenue Water (NRW) calculations when compared against bulk meter readings and billing data.
 
-![Consumption Analytics Dashboard](../../img/solutions/smart-water-meter/consumption-dashboard.png)
+![Consumption Analytics Dashboard](/screenshots/solutions/smart-water-metering/consumption-dashboard.png)
 
 ### Alarm Monitoring Dashboard
 
@@ -181,7 +181,7 @@ The Alarm Monitoring Dashboard is the operational triage centre for open alarms.
 
 **All Alarms** is a full alarm table showing every open alarm in the system with columns for severity, status, measurement, cause, value, threshold, created timestamp, and last updated timestamp. Operators use this table to acknowledge alarms and track resolution progress without leaving the dashboard.
 
-![Alarm Monitoring Dashboard](../../img/solutions/smart-water-meter/alarms-dashboard.png)
+![Alarm Monitoring Dashboard](/screenshots/solutions/smart-water-metering/alarms-dashboard.png)
 
 ### Zone Monitoring Template
 
@@ -189,7 +189,7 @@ The Zone Monitoring template is an operator-assigned view for per-zone situation
 
 The template shows four widgets: a zone flow rate value card (current `flow_rate`), a pressure gauge (0–10 bar), a tank level gauge (0–100%), and a pressure trend area chart (1-hour window). Operators assigned to a zone see only the devices in their zone, enforced by the group-based access control that controls template assignment.
 
-![Zone Monitoring Template](../../img/solutions/smart-water-meter/zone-monitoring-template.png)
+![Zone Monitoring Template](/screenshots/solutions/smart-water-metering/zone-monitoring-template.png)
 
 ### Customer Consumption Template
 
@@ -197,7 +197,7 @@ The Customer Consumption template is a customer-facing view. It uses a `device:w
 
 The template shows five widgets: a total volume value card (cumulative `total_volume`), a daily consumption value card (sum of `total_volume` over the past 24 hours), a current flow rate value card, an hourly consumption bar chart (hourly sum of `total_volume` over 7 days), and a flow activity line chart (live `flow_rate`). Customers with portal access can view their own consumption history without access to network-level data.
 
-![Customer Consumption Template](../../img/solutions/smart-water-meter/consumer-consumption-template.png)
+![Customer Consumption Template](/screenshots/solutions/smart-water-metering/consumer-consumption-template.png)
 
 ## Rules & Automation
 

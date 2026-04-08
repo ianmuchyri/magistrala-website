@@ -121,20 +121,32 @@ export const solutions: Solution[] = [
     docsPath: "/docs/user-guide/solution-packs/smart-water-metering/",
     dashboardScreenshots: [
       {
-        src: "/screenshots/smart-water-metering/kpi-dashboard.png",
+        src: "/screenshots/solutions/smart-water-metering/kpi-dashboard.png",
         alt: "KPI Dashboard showing total consumption, network pressure, and water quality status",
       },
       {
-        src: "/screenshots/smart-water-metering/consumption-dashboard.png",
+        src: "/screenshots/solutions/smart-water-metering/consumption-dashboard.png",
         alt: "Consumption Analytics Dashboard with historical usage trends and peak demand periods",
       },
       {
-        src: "/screenshots/smart-water-metering/networks-dashboard.png",
+        src: "/screenshots/solutions/smart-water-metering/networks-dashboard.png",
         alt: "Network Map Dashboard showing device locations and district metered areas",
       },
       {
-        src: "/screenshots/smart-water-metering/alarms-dashboard.png",
+        src: "/screenshots/solutions/smart-water-metering/alarms-dashboard.png",
         alt: "Alarm Monitoring Dashboard with active alarms by severity",
+      },
+      {
+        src: "/screenshots/solutions/smart-water-metering/real-time-dashboard.png",
+        alt: "Real-Time Monitoring Dashboard with live flow rate, pressure trend, and active alarms",
+      },
+      {
+        src: "/screenshots/solutions/smart-water-metering/zone-monitoring-template.png",
+        alt: "Zone Monitoring Template with per-zone flow, pressure, and tank level",
+      },
+      {
+        src: "/screenshots/solutions/smart-water-metering/consumer-consumption-template.png",
+        alt: "Customer Consumption Template with daily volume, flow rate, and hourly usage history",
       },
     ],
 
