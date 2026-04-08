@@ -1,12 +1,37 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface FAQItemProps {
   question: string;
   answer: string;
+}
+
+const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+function renderAnswer(text: string) {
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let match: RegExpExecArray | null;
+  LINK_RE.lastIndex = 0;
+  while ((match = LINK_RE.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    parts.push(
+      <Link
+        key={match.index}
+        href={match[2]}
+        className="text-primary underline underline-offset-2 hover:text-primary/80"
+      >
+        {match[1]}
+      </Link>,
+    );
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
 }
 
 export function FAQAccordionItem({ question, answer }: FAQItemProps) {
@@ -45,7 +70,7 @@ export function FAQAccordionItem({ question, answer }: FAQItemProps) {
       >
         <div className="overflow-hidden">
           <p className="text-lg text-muted-foreground leading-relaxed pr-8">
-            {answer}
+            {renderAnswer(answer)}
           </p>
         </div>
       </div>

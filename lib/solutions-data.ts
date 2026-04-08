@@ -217,9 +217,9 @@ export const solutions: Solution[] = [
     faq: [
       {
         question:
-          "Do our existing meters need to support MQTT, or can we use HTTP?",
+          "Our meters don't speak MQTT or HTTP. Can we still connect them?",
         answer:
-          "Both work. Devices with persistent connectivity can use MQTT for near-real-time streaming on port 1883 (plain) or 8883 (TLS). Devices that batch-upload readings can POST SenML payloads via HTTP or HTTPS. CoAP is also supported for constrained low-power devices. All protocols write to the same Raw Telemetry Channel and flow through the same processing and detection rules. The practical difference is alarm latency: MQTT devices trigger alarms within seconds of threshold breach; HTTP batch-uploaders trigger alarms after their next upload interval.",
+          "Yes. Your meters don't need to support MQTT or HTTP directly. A gateway sitting between your field devices and the platform can handle the protocol translation — many gateways support NB-IoT, LoRa, OPC-UA, and other industrial protocols out of the box. Alternatively, Magistrala ships a [LoRa adapter](/docs/dev-guide/extensions/lora/) and an [OPC-UA adapter](/docs/dev-guide/extensions/opcua/) that connect those networks natively. Either way, data arrives in the same Raw Telemetry Channel and flows through the same processing and detection rules.",
       },
       {
         question:
