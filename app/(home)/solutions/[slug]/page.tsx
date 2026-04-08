@@ -93,7 +93,7 @@ export default async function SolutionDetailPage({
                     rel="noopener noreferrer"
                   >
                     <Package className="size-4 mr-2" />
-                    Install Solution Pack
+                    Try on Magistrala Cloud
                   </Link>
                 </Button>
 
@@ -322,7 +322,7 @@ export default async function SolutionDetailPage({
             <Package className="size-7 text-white" />
           </div>
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Install the {solution.title} Solution Pack
+            Try the {solution.title} Solution Pack
           </h2>
           <p className="mt-4 text-lg text-white/70 leading-relaxed max-w-lg mx-auto">
             Preconfigured clients, channels, rules, dashboards, reports, and
@@ -340,7 +340,7 @@ export default async function SolutionDetailPage({
                 rel="noopener noreferrer"
               >
                 <Package className="size-4 mr-2" />
-                Install on Magistrala Cloud
+                Try on Magistrala Cloud
               </Link>
             </Button>
             <Button
