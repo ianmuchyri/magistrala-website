@@ -69,7 +69,7 @@ export function HowItWorks() {
         </div>
 
         {/* ── Desktop: horizontal flow ── */}
-        <div className="hidden lg:flex items-start max-w-5xl mx-auto">
+        <div className="hidden lg:flex items-start max-w-6xl mx-auto">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
@@ -96,7 +96,7 @@ export function HowItWorks() {
                 {/* Step card */}
                 <div
                   className={cn(
-                    "flex flex-col items-center text-center w-72 shrink-0",
+                    "flex flex-col items-center text-center w-80 shrink-0",
                     "transition-all duration-700 ease-out",
                     inView
                       ? "opacity-100 translate-y-0"
@@ -128,7 +128,7 @@ export function HowItWorks() {
                   <h3 className="text-xl font-semibold text-foreground mb-3 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </div>

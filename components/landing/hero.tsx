@@ -11,7 +11,7 @@ import {
 const HERO_CONTENT = {
   badge: "/ Open Source IoT Platform",
   titleLine1: "Build IoT solutions,",
-  titleLine2: "not infrastructure.",
+  titleLine2: "without complexity.",
   description:
     "Skip complex setups. Launch IoT and industrial solutions instantly, then customize every layer with a powerful, open-source platform.",
   primaryAction: {
@@ -63,7 +63,7 @@ const HERO_CONTENT = {
     linkHref: "/solutions",
   },
   stats: [
-    { id: "stat-1", value: "100%", label: "Open Source" },
+    { id: "stat-1", value: "13+", label: "Global\nPartners" },
     { id: "stat-2", value: "50+", label: "Deployments" },
     { id: "stat-3", value: "4", label: "Protocols \n Supported" },
     { id: "stat-4", value: "2.5k+", label: "Github Stars" },
@@ -245,13 +245,13 @@ export async function HeroSection() {
               {HERO_CONTENT.dashboardBlock.title}
             </h3>
 
-            <p className="text-muted-foreground text-[15px] leading-relaxed mb-8">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               {HERO_CONTENT.dashboardBlock.description}
             </p>
 
             <Link
               href={HERO_CONTENT.dashboardBlock.linkHref}
-              className="inline-flex items-center text-[15px] font-medium text-[#073763] dark:text-blue-400 hover:text-[#073763]/80 transition-colors group"
+              className="inline-flex items-center font-medium text-primary group"
             >
               {HERO_CONTENT.dashboardBlock.linkText}
               <span className="ml-2 transition-transform group-hover:translate-x-1">
@@ -271,7 +271,7 @@ export async function HeroSection() {
                 <span className="text-4xl sm:text-5xl font-medium tracking-tight text-foreground">
                   {stat.value}
                 </span>
-                <span className="text-[13px] font-medium text-muted-foreground leading-tight whitespace-pre-line">
+                <span className="font-medium text-muted-foreground leading-tight whitespace-pre-line">
                   {stat.label}
                 </span>
               </div>
