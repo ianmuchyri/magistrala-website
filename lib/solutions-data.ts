@@ -146,17 +146,17 @@ export const solutions: Solution[] = [
         {
           icon: AlertTriangle,
           title: "Finding out about bursts from tenants, not telemetry",
-          desc: "When a pipe bursts at 2 AM, most utilities learn about it from a complaint call - not from their own monitoring system. By then, the damage is done. Real-time flow and pressure monitoring with sub-minute alarm delivery changes the response sequence: the alarm fires before the first call.",
+          desc: "Most utilities hear about burst pipes from a complaint call. By then, the damage is done. The alarm should fire first.",
         },
         {
           icon: TrendingDown,
           title: "A CFO who can't explain Non-Revenue Water losses",
-          desc: "NRW rates of 20–40% are common in ageing networks, but without metered data at the zone level, there's no way to locate where the losses are occurring. Monthly volume comparisons and zone-level flow data give finance and operations the numbers they need to prioritise rehabilitation spend.",
+          desc: "NRW of 20–40% is common in ageing networks. Without zone-level flow data, there's no way to know where the losses are.",
         },
         {
           icon: FileBarChart,
           title: "Water quality compliance reports assembled by hand",
-          desc: "Preparing weekly pH, turbidity, and TDS summaries for the regulator means pulling data from multiple systems, checking it manually, and formatting it into a report - every single week. Automated report scheduling generates and delivers the compliance record without manual intervention.",
+          desc: "Pulling pH, turbidity, and TDS data from multiple systems every week, then formatting it for the regulator. Every single week.",
         },
       ],
     },
@@ -165,19 +165,19 @@ export const solutions: Solution[] = [
       steps: [
         {
           title: "Ingest",
-          desc: "Your meters and sensors send readings to the platform over whatever protocol they already support - MQTT, HTTP, CoAP, or WebSocket. Every raw reading is saved immediately, before any processing happens.",
+          desc: "Meters and sensors send readings over MQTT, HTTP, CoAP, or WebSocket. Every raw reading is saved immediately.",
         },
         {
           title: "Validate",
-          desc: "Before any alarm logic runs, each reading is checked for plausibility. A physically impossible value - a negative flow rate, a pH of zero, a pump reporting something other than on or off - gets discarded quietly. Only readings that make sense move forward.",
+          desc: "Each reading is checked for plausibility before alarm logic runs. Impossible values are discarded. Only clean data moves forward.",
         },
         {
           title: "Detect",
-          desc: "Five rules watch the clean data continuously. Pressure drops while flow spikes? Leak alarm. Flow goes very high very fast? Burst alarm. pH drifts outside drinking water guidelines? Quality alarm. A device stops sending? Offline alarm. Alerts go to the dashboard, a dedicated channel, and email.",
+          desc: "Rules watch the clean data continuously. Pressure drops while flow spikes? Leak alarm. Flow surges? Burst alarm. pH drifts? Quality alarm. Device goes quiet? Offline alarm.",
         },
         {
           title: "Report",
-          desc: "Three reports go out on schedule - a daily consumption summary, a weekly network performance review, and a weekly water quality report for the regulator. A separate rule writes the long-term record to PostgreSQL so nothing gets lost.",
+          desc: "Daily consumption, weekly network performance, and weekly water quality reports go out automatically. Long-term records write to PostgreSQL.",
         },
       ],
     },
@@ -188,22 +188,22 @@ export const solutions: Solution[] = [
         {
           icon: Gauge,
           title: "Municipal distribution network monitoring",
-          desc: "Monitor flow rate, pressure, and quality at District Metered Area boundaries. Visualise zone performance on the Network Map dashboard, detect distribution leaks within minutes of onset, and track monthly NRW trends on the Consumption Analytics dashboard.",
+          desc: "Flow, pressure, and quality at DMA boundaries. Leaks detected within minutes. NRW trends tracked monthly.",
         },
         {
           icon: Building2,
           title: "Multi-site commercial and residential property",
-          desc: "Deploy the Customer Consumption template to give individual tenants or building owners a portal view of their own usage - daily volume, current flow rate, and hourly consumption history - without access to network-level data. Building managers see aggregate consumption and receive burst alarms for their sites.",
+          desc: "Tenants see their own usage. Building managers get aggregate consumption and burst alarms. No network-level data exposure.",
         },
         {
           icon: Shield,
           title: "Water quality compliance for regulated supplies",
-          desc: "Continuous monitoring of pH, turbidity, TDS, and temperature against WHO drinking water guidelines, with automated weekly compliance reports delivered to quality team and regulatory recipients. Alarm records and processed telemetry in PostgreSQL provide an auditable event history.",
+          desc: "Continuous WHO-threshold monitoring. Weekly compliance reports delivered automatically. Full audit trail in PostgreSQL.",
         },
         {
           icon: Wrench,
           title: "Pump station and storage tank management",
-          desc: "Track pump run state, energy consumption, and tank fill level in real time. The Real-Time Monitoring Dashboard's hourly energy chart identifies pump cycles that consume more power than expected, and tank level gauges support proactive refill scheduling before supply pressure drops.",
+          desc: "Live pump state, energy draw, and tank levels. Spot inefficient pump cycles. Schedule refills before pressure drops.",
         },
       ],
     },
