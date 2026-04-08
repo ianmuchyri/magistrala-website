@@ -40,7 +40,7 @@ const SOLUTIONS_CONTENT = {
       description:
         "Eliminate non-revenue water losses and automate municipal billing with real-time network metering.",
       href: "/solutions/smart-water",
-      image: "/solutions/water-metering.jpg",
+      image: "/solutions/smart-water-metering.jpg",
       colSpan: "md:col-span-1",
     },
     {

@@ -130,14 +130,14 @@ export default async function SolutionDetailPage({
       {/* ── Dashboard Screenshots ─────────────────────────────────────── */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-10">
+          <div className="mb-10">
             <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
               Platform dashboards
             </p>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
               See it in action
             </h2>
-            <p className="mt-3 text-muted-foreground leading-relaxed">
+            <p className="mt-3 text-muted-foreground leading-relaxed text-lg">
               Purpose-built dashboards for every layer of your{" "}
               {solution.title.toLowerCase()} deployment — from live telemetry to
               compliance reports.

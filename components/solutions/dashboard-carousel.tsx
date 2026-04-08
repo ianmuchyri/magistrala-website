@@ -25,16 +25,31 @@ export function DashboardCarousel({ images }: DashboardCarouselProps) {
 
   return (
     <div>
-      <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-xl shadow-[#073763]/6">
+      <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-xl shadow-[#073763]/6 mx-auto w-fit">
+        {/* Invisible spacer — establishes the container dimensions */}
         <Image
-          key={images[current].src}
-          src={images[current].src}
-          alt={images[current].alt}
+          src={images[0].src}
+          alt=""
+          aria-hidden
           width={1200}
           height={720}
-          className="w-full h-auto"
-          priority={current === 0}
+          className="block max-w-full max-h-[70vh] w-auto h-auto opacity-0 pointer-events-none select-none"
+          priority
         />
+        {/* All images stacked; only the active one is visible */}
+        {images.map((img, i) => (
+          <Image
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            width={1200}
+            height={720}
+            className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ease-in-out ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
+            priority={i === 0}
+          />
+        ))}
         <div className="absolute inset-0 bg-linear-to-t from-card/10 to-transparent pointer-events-none" />
 
         {images.length > 1 && (

@@ -26,7 +26,6 @@ import {
   Timer,
   TrendingDown,
   Truck,
-  Waves,
   Wind,
   Wrench,
   Zap,
@@ -117,6 +116,209 @@ export interface Solution {
 // ─── Data ──────────────────────────────────────────────────────────────────
 
 export const solutions: Solution[] = [
+  // ── Smart Water Metering ───────────────────────────────────────────────
+  {
+    title: "Smart Water Metering",
+    slug: "smart-water",
+    icon: Droplets,
+    summary:
+      "Connect water meters, pressure sensors, quality sensors, pump controllers, and tank level sensors to a unified platform. Detect leaks and bursts in seconds, monitor water quality against WHO guidelines, and generate automated compliance reports — all from a single solution pack.",
+    description:
+      "The Smart Water Metering solution pack gives water utilities and facility managers real-time visibility into their distribution networks. Flow rate, pressure, pH, turbidity, TDS, temperature, pump state, and tank level all flow through a validated telemetry pipeline into pre-built dashboards, automated detection rules, and scheduled compliance reports. When a pipe bursts at 2 AM, the Critical alarm fires before the first tenant complaint.",
+    heroDetail:
+      "Seven detection rules watch for leaks (flow ≥ 8 L/min + pressure < 2.5 bar), bursts (flow ≥ 50 L/min + pressure ≤ 1.5 bar), water quality exceedances (pH, turbidity, TDS, temperature), and device connectivity gaps — all running continuously on validated telemetry, with alarms delivered in seconds.",
+    whyMagistrala:
+      "Magistrala's multi-protocol ingestion (MQTT, HTTP, CoAP, WebSocket) means your existing field devices connect without hardware changes. The channel-based data pipeline separates raw telemetry from validated and alert streams, so detection rules never act on sensor noise or firmware errors. Tag-based templates scale a single dashboard definition across hundreds of zones or customer accounts without duplication. Built-in report scheduling delivers PDF summaries to regulatory recipients automatically — no manual data exports.",
+    image: "/solutions/smart-water-metering.jpg",
+    dashboardScreenshots: [
+      {
+        src: "/screenshots/smart-water-metering/kpi-dashboard.png",
+        alt: "KPI Dashboard showing total consumption, network pressure, and water quality status",
+      },
+      {
+        src: "/screenshots/smart-water-metering/consumption-dashboard.png",
+        alt: "Consumption Analytics Dashboard with historical usage trends and peak demand periods",
+      },
+      {
+        src: "/screenshots/smart-water-metering/networks-dashboard.png",
+        alt: "Network Map Dashboard showing device locations and district metered areas",
+      },
+      {
+        src: "/screenshots/smart-water-metering/alarms-dashboard.png",
+        alt: "Alarm Monitoring Dashboard with active alarms by severity",
+      },
+    ],
+
+    packName: "Smart Water Metering Pack",
+    packTagline:
+      "From raw meter data to regulatory-ready reports — deployed in minutes.",
+    packDescription:
+      "A complete solution pack for water distribution monitoring: five device clients covering the full sensor suite, three channels forming a validated data pipeline, seven automation rules for detection and archival, five operational dashboards, two role-specific templates, six alarm definitions, and three scheduled report templates. Everything is pre-configured and ready to receive SenML telemetry over MQTT or HTTP.",
+    packItems: [
+      {
+        label: "Clients",
+        count: 5,
+        description:
+          "Pre-provisioned device clients for water meters, pressure sensors, water quality sensors, pump controllers, and tank level sensors",
+      },
+      {
+        label: "Channels",
+        count: 3,
+        description:
+          "Raw Telemetry, Processed Data, and Alerts channels forming a three-stage validated data pipeline",
+      },
+      {
+        label: "Groups",
+        count: 3,
+        description:
+          "Device groups for network-level, zone-level, and quality sensor access control",
+      },
+      {
+        label: "Rules",
+        count: 7,
+        description:
+          "Save Messages, Data Processing, Leak Detection, Burst Detection, Water Quality Monitor, Device Health Monitor, and Data Archival",
+      },
+      {
+        label: "Dashboards",
+        count: 5,
+        description:
+          "KPI, Real-Time Monitoring, Alarm Monitoring, Network Map, and Consumption Analytics dashboards ready to use after deployment",
+      },
+      {
+        label: "Alarms",
+        count: 6,
+        description:
+          "Leak warning, leak critical, burst pipe, pH out of range, high turbidity, and device offline alarm definitions",
+      },
+      {
+        label: "Report Templates",
+        count: 3,
+        description:
+          "Daily Consumption, Weekly Network Performance, and Water Quality Compliance report schedules with pre-configured recipients and aggregation windows",
+      },
+      {
+        label: "Templates",
+        count: 2,
+        description:
+          "Zone Monitoring (operator-facing, tag-based) and Customer Consumption (customer-facing, tag-based) dashboard templates",
+      },
+    ],
+    challenges: {
+      title: "Problems utilities deal with every day",
+      subtitle:
+        "The operational and financial costs of reactive water management are well documented. These are the specific pain points the solution pack addresses.",
+      items: [
+        {
+          icon: AlertTriangle,
+          title: "Finding out about bursts from tenants, not telemetry",
+          desc: "When a pipe bursts at 2 AM, most utilities learn about it from a complaint call — not from their own monitoring system. By then, the damage is done. Real-time flow and pressure monitoring with sub-minute alarm delivery changes the response sequence: the alarm fires before the first call.",
+        },
+        {
+          icon: TrendingDown,
+          title: "A CFO who can't explain Non-Revenue Water losses",
+          desc: "NRW rates of 20–40% are common in ageing networks, but without metered data at the zone level, there's no way to locate where the losses are occurring. Monthly volume comparisons and zone-level flow data give finance and operations the numbers they need to prioritise rehabilitation spend.",
+        },
+        {
+          icon: FileBarChart,
+          title: "Water quality compliance reports assembled by hand",
+          desc: "Preparing weekly pH, turbidity, and TDS summaries for the regulator means pulling data from multiple systems, checking it manually, and formatting it into a report — every single week. Automated report scheduling generates and delivers the compliance record without manual intervention.",
+        },
+      ],
+    },
+    howItWorks: {
+      subtitle: "Four steps from field device to actionable insight",
+      steps: [
+        {
+          title: "Ingest",
+          desc: "Field devices publish SenML payloads over MQTT (port 1883/8883), HTTP (80/443), CoAP (5683/5684), or WebSocket (8080/8443) to the Raw Telemetry Channel. The Save Messages rule persists every raw record immediately.",
+        },
+        {
+          title: "Validate",
+          desc: "The Data Processing rule checks each field against its safe range — flow 0–1000 L/min, pressure 0–20 bar, pH 0–14, turbidity 0–1000 NTU, TDS 0–10000 ppm, temperature -10–100 °C, tank level 0–100%, pump status 0 or 1. Records that pass are forwarded to the Processed Data Channel. Records that fail are discarded before any detection rule sees them.",
+        },
+        {
+          title: "Detect",
+          desc: "Five detection rules run continuously on validated data: Leak Detection (flow ≥ 8 L/min + pressure < 2.5 bar = Warning; flow ≥ 20 L/min = Critical), Burst Detection (flow ≥ 50 L/min + pressure ≤ 1.5 bar = Critical; flow ≥ 80 L/min = High), Water Quality Monitor (WHO thresholds for pH, turbidity, TDS, temperature), and Device Health Monitor (offline > 600 s). Alarms route to the alarm log, the Alerts Channel, and email recipients.",
+        },
+        {
+          title: "Report",
+          desc: "Three scheduled reports deliver automatically: a daily consumption summary, a weekly network performance review, and a weekly water quality compliance report delivered to both the admin and quality team addresses. A Data Archival rule forwards selected metrics to an external PostgreSQL database for long-term storage.",
+        },
+      ],
+    },
+    applications: {
+      title: "Key Applications",
+      subtitle: "Where utilities and property managers deploy smart metering",
+      items: [
+        {
+          icon: Gauge,
+          title: "Municipal distribution network monitoring",
+          desc: "Monitor flow rate, pressure, and quality at District Metered Area boundaries. Visualise zone performance on the Network Map dashboard, detect distribution leaks within minutes of onset, and track monthly NRW trends on the Consumption Analytics dashboard.",
+        },
+        {
+          icon: Building2,
+          title: "Multi-site commercial and residential property",
+          desc: "Deploy the Customer Consumption template to give individual tenants or building owners a portal view of their own usage — daily volume, current flow rate, and hourly consumption history — without access to network-level data. Building managers see aggregate consumption and receive burst alarms for their sites.",
+        },
+        {
+          icon: Shield,
+          title: "Water quality compliance for regulated supplies",
+          desc: "Continuous monitoring of pH, turbidity, TDS, and temperature against WHO drinking water guidelines, with automated weekly compliance reports delivered to quality team and regulatory recipients. Alarm records and processed telemetry in PostgreSQL provide an auditable event history.",
+        },
+        {
+          icon: Wrench,
+          title: "Pump station and storage tank management",
+          desc: "Track pump run state, energy consumption, and tank fill level in real time. The Real-Time Monitoring Dashboard's hourly energy chart identifies pump cycles that consume more power than expected, and tank level gauges support proactive refill scheduling before supply pressure drops.",
+        },
+      ],
+    },
+    benefits: [
+      "Leak alarms fire within seconds of threshold breach — not hours after a tenant complaint",
+      "Zone-level flow data identifies where NRW losses are occurring so rehabilitation spend goes to the right places",
+      "Water quality compliance reports generate and deliver automatically every week, eliminating manual data assembly",
+      "Device Health Monitor flags offline sensors within 10–20 minutes, preventing silent data gaps in regulatory records",
+      "Tag-based templates scale a single dashboard definition across any number of zones or customer accounts without duplicating configuration",
+    ],
+    faq: [
+      {
+        question:
+          "Do our existing meters need to support MQTT, or can we use HTTP?",
+        answer:
+          "Both work. Devices with persistent connectivity can use MQTT for near-real-time streaming on port 1883 (plain) or 8883 (TLS). Devices that batch-upload readings can POST SenML payloads via HTTP or HTTPS. CoAP is also supported for constrained low-power devices. All protocols write to the same Raw Telemetry Channel and flow through the same processing and detection rules. The practical difference is alarm latency: MQTT devices trigger alarms within seconds of threshold breach; HTTP batch-uploaders trigger alarms after their next upload interval.",
+      },
+      {
+        question:
+          "Can the pack handle multiple pressure zones with different normal operating ranges?",
+        answer:
+          "Yes. The Leak Detection rule uses fixed thresholds by default (pressure < 2.5 bar for the warning condition), but you can deploy additional rule instances with zone-specific thresholds and assign each rule to the channel or group corresponding to that zone. The Zone Monitoring template supports per-zone pressure gauge scaling so operators see the correct normal range for their zone.",
+      },
+      {
+        question:
+          "How does the solution support Non-Revenue Water calculation?",
+        answer:
+          "The pack provides the metered volume data that NRW calculation requires: zone-level flow totals from the Consumption Analytics dashboard, daily consumption from the Daily Consumption Report, and long-term volume records from the PostgreSQL archive. NRW calculation itself requires comparing those figures against billing data from your customer management system — the pack's data exports and report outputs are designed to feed into that calculation rather than replace it.",
+      },
+      {
+        question:
+          "What happens if a device goes offline during a quality exceedance event?",
+        answer:
+          "The Device Health Monitor raises a Warning alarm (Severity 3) within 10–20 minutes of the last received message, regardless of what the last reading showed. If the device went offline while reporting an out-of-range pH or turbidity reading, the quality alarm remains active in the alarm log until it is acknowledged or cleared. The processed telemetry and alarm records in PostgreSQL provide a complete timeline of what was reported before the device went silent.",
+      },
+    ],
+    metaDescription:
+      "Monitor water flow, pressure, pH, turbidity, and tank levels in real time. Detect leaks and bursts within seconds, automate water quality compliance reports, and reduce Non-Revenue Water losses with Magistrala's Smart Water Metering solution pack.",
+    keywords: [
+      "smart water metering",
+      "water utility IoT",
+      "leak detection",
+      "water quality monitoring",
+      "magistrala water",
+      "NRW reduction",
+      "MQTT water meter",
+    ],
+  },
+
   // ── Smart City ──────────────────────────────────────────────────────────
   {
     title: "Smart City",
@@ -317,208 +519,6 @@ export const solutions: Solution[] = [
       "smart street lighting",
       "city operations dashboard",
       "Magistrala smart city",
-    ],
-  },
-
-  // ── Smart Water Metering ───────────────────────────────────────────────
-  {
-    title: "Smart Water Metering",
-    slug: "smart-water",
-    icon: Droplets,
-    summary:
-      "Eliminate non-revenue water losses and automate municipal billing with real-time network metering.",
-    description:
-      "Give water utilities complete network visibility — from production to end-point consumption. The Smart Water Metering Pack deploys automated meter reading, leak detection, and demand forecasting infrastructure on Magistrala with zero integration overhead.",
-    heroDetail:
-      "The Smart Water Metering Pack is designed for water utilities that need to modernize their AMR/AMI infrastructure without building integration layers from scratch. It covers the full metering value chain — from automated meter reading and district metering zone management to burst detection, demand forecasting, and billing-ready data exports. The pack supports both municipal distribution networks and large industrial water consumers, scaling to thousands of meters with the same deployment footprint.",
-    whyMagistrala:
-      "Magistrala handles the heavy lifting of device connectivity, data normalization, and time-series storage at utility scale — so your engineering team can focus on network performance and operational outcomes rather than infrastructure plumbing.",
-    image: "/solutions/water-metering.jpg",
-    dashboardScreenshots: [
-      {
-        src: "/screenshots/smart-water.png",
-        alt: "Smart Water Metering network overview dashboard",
-      },
-      {
-        src: "/screenshots/dashboard-2.png",
-        alt: "Water consumption analytics dashboard",
-      },
-      {
-        src: "/screenshots/reports-1.png",
-        alt: "Water utility compliance reports",
-      },
-      {
-        src: "/screenshots/alarms-2.png",
-        alt: "Water network leak detection alarms",
-      },
-    ],
-
-    packName: "Smart Water Metering Pack",
-    packTagline: "AMI-ready water network monitoring — live in 30 minutes.",
-    packDescription:
-      "Everything a water utility needs to modernize AMR/AMI infrastructure. Pre-configured metering clients, district metering zone groups, leak detection rules, and billing-ready dashboards — deploy and start monitoring immediately.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 50,
-        description:
-          "Smart meters, pressure sensors, flow meters, valve controllers",
-      },
-      {
-        label: "Channels",
-        count: 8,
-        description: "Consumption, pressure, flow, quality, leakage, billing",
-      },
-      {
-        label: "Groups",
-        count: 4,
-        description: "District Metering Zones: DMA A, B, C, Trunk main",
-      },
-      {
-        label: "Rules",
-        count: 15,
-        description:
-          "Leak detection thresholds, pressure anomalies, consumption spikes, no-read alerts",
-      },
-      {
-        label: "Dashboards",
-        count: 4,
-        description:
-          "Network overview, leakage, billing & consumption, pressure management",
-      },
-      {
-        label: "Alarms",
-        count: 12,
-        description:
-          "Burst pipe alerts, tamper detection, low pressure, meter communication failures",
-      },
-      {
-        label: "Report Templates",
-        count: 4,
-        description:
-          "Monthly billing export, NRW analysis, DMA performance, regulator compliance",
-      },
-      {
-        label: "Templates",
-        count: 3,
-        description: "Meter onboarding, DMA configuration, alert escalation",
-      },
-    ],
-
-    challenges: {
-      title: "Non-revenue water is bleeding utilities dry",
-      subtitle:
-        "The global average NRW rate exceeds 30%. Real-time metering infrastructure is no longer a luxury — it's a financial necessity.",
-      items: [
-        {
-          icon: TrendingDown,
-          title: "Invisible Losses",
-          desc: "Physical leaks and meter inaccuracies go undetected for weeks, with utilities only discovering losses when monthly billing data is reconciled.",
-        },
-        {
-          icon: AlertTriangle,
-          title: "Billing Disputes",
-          desc: "Manual meter reading introduces errors and delays. Customers dispute bills, straining operations and regulatory relationships.",
-        },
-        {
-          icon: Timer,
-          title: "Slow Leak Response",
-          desc: "Without real-time pressure and flow monitoring, burst mains and critical leaks go undetected until visual inspection or customer complaints.",
-        },
-      ],
-    },
-
-    howItWorks: {
-      subtitle: "From edge meter to billing dashboard — fully automated.",
-      steps: [
-        {
-          title: "Ingest",
-          desc: "Smart meters and pressure loggers transmit readings over NB-IoT, LoRaWAN, or MQTT at configurable intervals into Magistrala's pre-built metering channels.",
-        },
-        {
-          title: "Organize",
-          desc: "Readings are automatically grouped by District Metering Zone (DMA), enabling per-zone balance calculations and loss attribution.",
-        },
-        {
-          title: "Detect",
-          desc: "Configurable rules continuously compare inlet flow vs. downstream consumption. Statistical anomaly detection flags potential bursts, leaks, or tamper events in real time.",
-        },
-        {
-          title: "Report",
-          desc: "Pre-built billing templates aggregate validated consumption data for export. Leak and NRW reports are auto-generated on configurable schedules.",
-        },
-      ],
-    },
-
-    applications: {
-      title: "Key Applications",
-      subtitle: "Where water utilities are using this pack",
-      items: [
-        {
-          icon: Gauge,
-          title: "AMR / AMI Billing",
-          desc: "Automated meter reading with tamper detection and consumption anomaly alerts. Export billing-ready data directly from dashboards.",
-        },
-        {
-          icon: Waves,
-          title: "Leak & Burst Detection",
-          desc: "Night-flow analysis and minimum-flow-rate rules pinpoint network leaks before they become costly burst mains.",
-        },
-        {
-          icon: LineChart,
-          title: "Demand Forecasting",
-          desc: "Historical consumption data and seasonal patterns feed forecasting models for better reservoir management and pumping schedules.",
-        },
-        {
-          icon: Activity,
-          title: "Pressure Zone Management",
-          desc: "Real-time pressure monitoring across zones ensures optimal delivery pressure, reducing pipe stress and leakage rates.",
-        },
-      ],
-    },
-
-    benefits: [
-      "Reduce non-revenue water (NRW) by up to 25% in the first year of deployment",
-      "Cut manual meter reading visits with automated remote reads across the full network",
-      "Accelerate leak detection from weeks to minutes with real-time rules engine",
-      "Eliminate billing disputes with validated, tamper-evident meter data",
-      "Meet regulatory reporting requirements with built-in NRW and compliance templates",
-      "Scale from pilot DMA to full network without re-architecting — add meters in minutes",
-    ],
-
-    faq: [
-      {
-        question: "What connectivity options are supported for field meters?",
-        answer:
-          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Field meters using LoRaWAN, NB-IoT, or cellular backhaul connect via an external protocol adapter or gateway that translates their data into one of the native protocols. Devices authenticate with pre-shared keys or X.509 certificates.",
-      },
-      {
-        question: "Can Magistrala integrate with our existing SCADA system?",
-        answer:
-          "Yes. Magistrala exposes a webhook-based alert sink and a REST API for time-series data retrieval. Most SCADA platforms consume webhook POST calls or poll the Magistrala API directly. For OPC-UA-based SCADA systems, an adapter exposes Magistrala channels as OPC-UA nodes.",
-      },
-      {
-        question: "How is access to meter data controlled across teams?",
-        answer:
-          "Magistrala implements fine-grained RBAC via SpiceDB, scoped to domains, groups, and individual channels. A field technician can be granted read-only access to their assigned district metered area while a billing analyst has export access to consumption data but no alarm management permissions.",
-      },
-      {
-        question:
-          "What infrastructure is needed to deploy Magistrala for water metering?",
-        answer:
-          "A single-node Docker Compose deployment handles approximately 10,000 connected meters at 15-minute reporting intervals. For larger networks, Kubernetes deployment with horizontal scaling handles millions of messages per hour. Magistrala is also available as a managed cloud service.",
-      },
-    ],
-
-    metaDescription:
-      "Deploy smart water metering infrastructure in minutes. The Magistrala Smart Water Pack includes pre-configured AMI clients, leak detection rules, and billing dashboards — ready out of the box.",
-    keywords: [
-      "smart water metering",
-      "AMI IoT platform",
-      "NRW reduction",
-      "leak detection IoT",
-      "district metering zone",
-      "Magistrala water",
     ],
   },
 
