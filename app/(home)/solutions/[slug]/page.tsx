@@ -1,6 +1,7 @@
 import {
   ArrowLeft,
   ArrowRight,
+  BookOpen,
   Check,
   ChevronRight,
   Package,
@@ -95,14 +96,29 @@ export default async function SolutionDetailPage({
                     Install Solution Pack
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 px-7"
-                >
-                  <Link href="/contact">Talk to an expert</Link>
-                </Button>
+
+                {solution.docsPath ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="h-12 px-7"
+                  >
+                    <Link href={solution.docsPath}>
+                      <BookOpen className="size-4 mr-2" />
+                      Read the docs
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="h-12 px-7"
+                  >
+                    <Link href="/contact">Talk to an expert</Link>
+                  </Button>
+                )}
               </div>
             </div>
             <div className="space-y-4">

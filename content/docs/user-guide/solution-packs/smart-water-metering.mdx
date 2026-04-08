@@ -1,6 +1,6 @@
 ---
 title: Smart Water Metering
-description: The Smart Water Metering solution pack connects water meters, pressure sensors, quality sensors, pump controllers, and tank level sensors to a unified monitoring platform. It is designed for water utilities, municipal operators, and facility managers who need real-time visibility into distribution networks, early warning of leaks and bursts, and automated water quality compliance reporting — without building a custom integration from scratch.
+description: The Smart Water Metering solution pack connects your water meters, sensors, and pump controllers to a single monitoring platform. Built for water utilities and facility managers who want a live view of their networks, early warning when something goes wrong, and automated compliance reports — without building custom integrations.
 keywords:
   - Solution packs
   - Smart water metering
@@ -12,11 +12,11 @@ image: /img/mg-preview.png
 
 ## Overview
 
-The solution monitors the full water distribution chain: from field devices measuring flow, pressure, and quality at the meter, through a validated telemetry pipeline, to dashboards used by network operators, zone supervisors, and customer-facing portals.
+The pack monitors your water distribution network from sensors in the field through to the dashboards your operators use every day.
 
-Data flows in three stages. Raw SenML payloads arrive on the Raw Telemetry Channel over MQTT (or HTTP, CoAP, or WebSocket). A data processing rule validates each record against safe operating ranges and discards out-of-range values before forwarding clean data to the Processed Data Channel. From there, detection rules run continuously — checking for leaks, burst conditions, water quality exceedances, and device connectivity gaps — and route alarms and alerts to the Alerts Channel and configured email recipients. A data archival rule forwards selected metrics to an external PostgreSQL database for long-term storage and regulatory reporting.
+Readings arrive from your devices and land in the Raw Telemetry Channel. A processing rule checks each record for plausibility and passes clean data to the Processed Data Channel. Detection rules run continuously from there — watching for leaks, bursts, water quality issues, and devices that go quiet — and route alarms to operators via the platform and email. A separate archival rule writes selected metrics to PostgreSQL for long-term reporting.
 
-Operators interact with four dashboards: a KPI summary, a real-time monitoring view, a network map, and a consumption analytics panel. Two templates — Zone Monitoring and Customer Consumption — allow operators to assign tailored views to specific zones or individual customer accounts without duplicating dashboard configuration.
+Operators work with five pre-built dashboards: a KPI summary, a real-time monitoring view, an alarm triage screen, a network map, and a consumption analytics panel. Two templates — Zone Monitoring and Customer Consumption — let operators assign the right view to a zone or customer account without duplicating any dashboard configuration.
 
 ## Key Features
 

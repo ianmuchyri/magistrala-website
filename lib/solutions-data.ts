@@ -31,14 +31,6 @@ import {
   Zap,
 } from "lucide-react";
 
-// ─── Pack item ─────────────────────────────────────────────────────────────
-
-export interface PackItem {
-  label: string;
-  count: number;
-  description: string;
-}
-
 // ─── Common sub-structures ─────────────────────────────────────────────────
 
 export interface ChallengeItem {
@@ -76,12 +68,8 @@ export interface Solution {
   image: string;
   /** Dashboard screenshots shown in the carousel on the detail page */
   dashboardScreenshots: { src: string; alt: string }[];
-
-  // Solution Pack ────────────────────────────────────────────────────────
-  packName: string;
-  packTagline: string;
-  packDescription: string;
-  packItems: PackItem[];
+  /** Path to the full documentation page for this solution, if one exists */
+  docsPath?: string;
 
   // Challenges ───────────────────────────────────────────────────────────
   challenges: {
@@ -122,14 +110,15 @@ export const solutions: Solution[] = [
     slug: "smart-water",
     icon: Droplets,
     summary:
-      "Connect water meters, pressure sensors, quality sensors, pump controllers, and tank level sensors to a unified platform. Detect leaks and bursts in seconds, monitor water quality against WHO guidelines, and generate automated compliance reports — all from a single solution pack.",
+      "Most utilities find out about burst pipes from tenant complaints, not their own systems. This pack connects your meters and sensors to a single platform, catches problems in seconds, and files the weekly compliance reports for you.",
     description:
-      "The Smart Water Metering solution pack gives water utilities and facility managers real-time visibility into their distribution networks. Flow rate, pressure, pH, turbidity, TDS, temperature, pump state, and tank level all flow through a validated telemetry pipeline into pre-built dashboards, automated detection rules, and scheduled compliance reports. When a pipe bursts at 2 AM, the Critical alarm fires before the first tenant complaint.",
+      "The Smart Water Metering pack gives water utilities and facility managers a live view of their distribution networks. Flow, pressure, water quality, pump state, and tank levels all land in pre-built dashboards with detection rules and scheduled reports already wired up. When a pipe bursts at 2 AM, the alarm fires before the first tenant complaint.",
     heroDetail:
-      "Seven detection rules watch for leaks (flow ≥ 8 L/min + pressure < 2.5 bar), bursts (flow ≥ 50 L/min + pressure ≤ 1.5 bar), water quality exceedances (pH, turbidity, TDS, temperature), and device connectivity gaps — all running continuously on validated telemetry, with alarms delivered in seconds.",
+      "Seven detection rules watch the network around the clock — catching slow leaks, sudden bursts, water quality problems, and devices that go dark — with alerts delivered in seconds over email and the platform.",
     whyMagistrala:
-      "Magistrala's multi-protocol ingestion (MQTT, HTTP, CoAP, WebSocket) means your existing field devices connect without hardware changes. The channel-based data pipeline separates raw telemetry from validated and alert streams, so detection rules never act on sensor noise or firmware errors. Tag-based templates scale a single dashboard definition across hundreds of zones or customer accounts without duplication. Built-in report scheduling delivers PDF summaries to regulatory recipients automatically — no manual data exports.",
+      "Your existing field devices probably already speak MQTT or HTTP, so there's nothing to replace in the field. Raw readings and validated data stay in separate channels, so a sensor glitch never triggers a false alarm. One dashboard template covers any number of zones or customer accounts. Compliance reports go out automatically every week.",
     image: "/solutions/smart-water-metering.jpg",
+    docsPath: "/docs/user-guide/solution-packs/smart-water-metering/",
     dashboardScreenshots: [
       {
         src: "/screenshots/smart-water-metering/kpi-dashboard.png",
@@ -149,61 +138,6 @@ export const solutions: Solution[] = [
       },
     ],
 
-    packName: "Smart Water Metering Pack",
-    packTagline:
-      "From raw meter data to regulatory-ready reports — deployed in minutes.",
-    packDescription:
-      "A complete solution pack for water distribution monitoring: five device clients covering the full sensor suite, three channels forming a validated data pipeline, seven automation rules for detection and archival, five operational dashboards, two role-specific templates, six alarm definitions, and three scheduled report templates. Everything is pre-configured and ready to receive SenML telemetry over MQTT or HTTP.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 5,
-        description:
-          "Pre-provisioned device clients for water meters, pressure sensors, water quality sensors, pump controllers, and tank level sensors",
-      },
-      {
-        label: "Channels",
-        count: 3,
-        description:
-          "Raw Telemetry, Processed Data, and Alerts channels forming a three-stage validated data pipeline",
-      },
-      {
-        label: "Groups",
-        count: 3,
-        description:
-          "Device groups for network-level, zone-level, and quality sensor access control",
-      },
-      {
-        label: "Rules",
-        count: 7,
-        description:
-          "Save Messages, Data Processing, Leak Detection, Burst Detection, Water Quality Monitor, Device Health Monitor, and Data Archival",
-      },
-      {
-        label: "Dashboards",
-        count: 5,
-        description:
-          "KPI, Real-Time Monitoring, Alarm Monitoring, Network Map, and Consumption Analytics dashboards ready to use after deployment",
-      },
-      {
-        label: "Alarms",
-        count: 6,
-        description:
-          "Leak warning, leak critical, burst pipe, pH out of range, high turbidity, and device offline alarm definitions",
-      },
-      {
-        label: "Report Templates",
-        count: 3,
-        description:
-          "Daily Consumption, Weekly Network Performance, and Water Quality Compliance report schedules with pre-configured recipients and aggregation windows",
-      },
-      {
-        label: "Templates",
-        count: 2,
-        description:
-          "Zone Monitoring (operator-facing, tag-based) and Customer Consumption (customer-facing, tag-based) dashboard templates",
-      },
-    ],
     challenges: {
       title: "Problems utilities deal with every day",
       subtitle:
@@ -212,7 +146,7 @@ export const solutions: Solution[] = [
         {
           icon: AlertTriangle,
           title: "Finding out about bursts from tenants, not telemetry",
-          desc: "When a pipe bursts at 2 AM, most utilities learn about it from a complaint call — not from their own monitoring system. By then, the damage is done. Real-time flow and pressure monitoring with sub-minute alarm delivery changes the response sequence: the alarm fires before the first call.",
+          desc: "When a pipe bursts at 2 AM, most utilities learn about it from a complaint call - not from their own monitoring system. By then, the damage is done. Real-time flow and pressure monitoring with sub-minute alarm delivery changes the response sequence: the alarm fires before the first call.",
         },
         {
           icon: TrendingDown,
@@ -222,7 +156,7 @@ export const solutions: Solution[] = [
         {
           icon: FileBarChart,
           title: "Water quality compliance reports assembled by hand",
-          desc: "Preparing weekly pH, turbidity, and TDS summaries for the regulator means pulling data from multiple systems, checking it manually, and formatting it into a report — every single week. Automated report scheduling generates and delivers the compliance record without manual intervention.",
+          desc: "Preparing weekly pH, turbidity, and TDS summaries for the regulator means pulling data from multiple systems, checking it manually, and formatting it into a report - every single week. Automated report scheduling generates and delivers the compliance record without manual intervention.",
         },
       ],
     },
@@ -231,19 +165,19 @@ export const solutions: Solution[] = [
       steps: [
         {
           title: "Ingest",
-          desc: "Field devices publish SenML payloads over MQTT (port 1883/8883), HTTP (80/443), CoAP (5683/5684), or WebSocket (8080/8443) to the Raw Telemetry Channel. The Save Messages rule persists every raw record immediately.",
+          desc: "Your meters and sensors send readings to the platform over whatever protocol they already support - MQTT, HTTP, CoAP, or WebSocket. Every raw reading is saved immediately, before any processing happens.",
         },
         {
           title: "Validate",
-          desc: "The Data Processing rule checks each field against its safe range — flow 0–1000 L/min, pressure 0–20 bar, pH 0–14, turbidity 0–1000 NTU, TDS 0–10000 ppm, temperature -10–100 °C, tank level 0–100%, pump status 0 or 1. Records that pass are forwarded to the Processed Data Channel. Records that fail are discarded before any detection rule sees them.",
+          desc: "Before any alarm logic runs, each reading is checked for plausibility. A physically impossible value - a negative flow rate, a pH of zero, a pump reporting something other than on or off - gets discarded quietly. Only readings that make sense move forward.",
         },
         {
           title: "Detect",
-          desc: "Five detection rules run continuously on validated data: Leak Detection (flow ≥ 8 L/min + pressure < 2.5 bar = Warning; flow ≥ 20 L/min = Critical), Burst Detection (flow ≥ 50 L/min + pressure ≤ 1.5 bar = Critical; flow ≥ 80 L/min = High), Water Quality Monitor (WHO thresholds for pH, turbidity, TDS, temperature), and Device Health Monitor (offline > 600 s). Alarms route to the alarm log, the Alerts Channel, and email recipients.",
+          desc: "Five rules watch the clean data continuously. Pressure drops while flow spikes? Leak alarm. Flow goes very high very fast? Burst alarm. pH drifts outside drinking water guidelines? Quality alarm. A device stops sending? Offline alarm. Alerts go to the dashboard, a dedicated channel, and email.",
         },
         {
           title: "Report",
-          desc: "Three scheduled reports deliver automatically: a daily consumption summary, a weekly network performance review, and a weekly water quality compliance report delivered to both the admin and quality team addresses. A Data Archival rule forwards selected metrics to an external PostgreSQL database for long-term storage.",
+          desc: "Three reports go out on schedule - a daily consumption summary, a weekly network performance review, and a weekly water quality report for the regulator. A separate rule writes the long-term record to PostgreSQL so nothing gets lost.",
         },
       ],
     },
@@ -259,7 +193,7 @@ export const solutions: Solution[] = [
         {
           icon: Building2,
           title: "Multi-site commercial and residential property",
-          desc: "Deploy the Customer Consumption template to give individual tenants or building owners a portal view of their own usage — daily volume, current flow rate, and hourly consumption history — without access to network-level data. Building managers see aggregate consumption and receive burst alarms for their sites.",
+          desc: "Deploy the Customer Consumption template to give individual tenants or building owners a portal view of their own usage - daily volume, current flow rate, and hourly consumption history - without access to network-level data. Building managers see aggregate consumption and receive burst alarms for their sites.",
         },
         {
           icon: Shield,
@@ -274,7 +208,7 @@ export const solutions: Solution[] = [
       ],
     },
     benefits: [
-      "Leak alarms fire within seconds of threshold breach — not hours after a tenant complaint",
+      "Leak alarms fire within seconds of threshold breach - not hours after a tenant complaint",
       "Zone-level flow data identifies where NRW losses are occurring so rehabilitation spend goes to the right places",
       "Water quality compliance reports generate and deliver automatically every week, eliminating manual data assembly",
       "Device Health Monitor flags offline sensors within 10–20 minutes, preventing silent data gaps in regulatory records",
@@ -297,7 +231,7 @@ export const solutions: Solution[] = [
         question:
           "How does the solution support Non-Revenue Water calculation?",
         answer:
-          "The pack provides the metered volume data that NRW calculation requires: zone-level flow totals from the Consumption Analytics dashboard, daily consumption from the Daily Consumption Report, and long-term volume records from the PostgreSQL archive. NRW calculation itself requires comparing those figures against billing data from your customer management system — the pack's data exports and report outputs are designed to feed into that calculation rather than replace it.",
+          "The pack provides the metered volume data that NRW calculation requires: zone-level flow totals from the Consumption Analytics dashboard, daily consumption from the Daily Consumption Report, and long-term volume records from the PostgreSQL archive. NRW calculation itself requires comparing those figures against billing data from your customer management system - the pack's data exports and report outputs are designed to feed into that calculation rather than replace it.",
       },
       {
         question:
@@ -327,9 +261,9 @@ export const solutions: Solution[] = [
     summary:
       "Digitize urban infrastructure and unify civic command centers. Monitor traffic, energy, and public utilities from a single platform.",
     description:
-      "Transform disconnected urban infrastructure into a unified, data-driven command center. The Smart City Solution Pack gives municipalities real-time visibility across traffic systems, street lighting, waste management, and public energy grids — all pre-wired, pre-configured, and ready to deploy.",
+      "Transform disconnected urban infrastructure into a unified, data-driven command center. The Smart City Solution Pack gives municipalities real-time visibility across traffic systems, street lighting, waste management, and public energy grids - all pre-wired, pre-configured, and ready to deploy.",
     heroDetail:
-      "The Smart City Solution Pack is built for municipalities and city operators who need to move beyond manual monitoring and siloed systems. It addresses the complete urban IoT lifecycle — from device onboarding and multi-protocol data ingestion to real-time alerting, automated rule execution, and executive reporting. Whether managing traffic flows, optimizing street lighting, tracking waste fill-levels, or monitoring public energy grids, the pack provides pre-configured infrastructure to bring it all under one operational view — without months of integration work.",
+      "The Smart City Solution Pack is built for municipalities and city operators who need to move beyond manual monitoring and siloed systems. It addresses the complete urban IoT lifecycle - from device onboarding and multi-protocol data ingestion to real-time alerting, automated rule execution, and executive reporting. Whether managing traffic flows, optimizing street lighting, tracking waste fill-levels, or monitoring public energy grids, the pack provides pre-configured infrastructure to bring it all under one operational view - without months of integration work.",
     whyMagistrala:
       "Magistrala's open-source core provides the multi-protocol connectivity, per-device credential management, and rule-engine foundation that large-scale urban deployments demand. Its built-in multi-tenancy lets each city department manage their own data view, while open APIs ensure you're never locked into a proprietary ecosystem.",
     image: "/solutions/smart-city.jpg",
@@ -352,61 +286,10 @@ export const solutions: Solution[] = [
       },
     ],
 
-    packName: "Smart City Operations Pack",
-    packTagline: "Full urban IoT stack — deployed in under an hour.",
-    packDescription:
-      "The Smart City Operations Pack bundles everything a municipality needs to go from zero to a live, operational IoT deployment. Pre-configured devices, data pipelines, alerting rules, and dashboards — no integration work required.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 24,
-        description: "Traffic sensors, smart meters, cameras, lighting nodes",
-      },
-      {
-        label: "Channels",
-        count: 12,
-        description: "Traffic, lighting, waste, energy, safety, environment",
-      },
-      {
-        label: "Groups",
-        count: 5,
-        description: "City zones: North, South, East, West, Central",
-      },
-      {
-        label: "Rules",
-        count: 18,
-        description:
-          "Congestion alerts, lighting schedules, overflow triggers, anomaly detection",
-      },
-      {
-        label: "Dashboards",
-        count: 6,
-        description:
-          "Operations overview, traffic, energy, waste, safety, executive KPIs",
-      },
-      {
-        label: "Alarms",
-        count: 15,
-        description:
-          "Critical infrastructure alerts with severity levels and escalation paths",
-      },
-      {
-        label: "Report Templates",
-        count: 5,
-        description:
-          "Daily city briefing, monthly energy consumption, SLA compliance",
-      },
-      {
-        label: "Templates",
-        count: 4,
-        description: "Device onboarding, zone configuration, alert routing",
-      },
-    ],
-
     challenges: {
       title: "Cities are drowning in disconnected data",
       subtitle:
-        "Urban infrastructure generates enormous amounts of data — but fragmented systems mean operators can't act on it fast enough.",
+        "Urban infrastructure generates enormous amounts of data - but fragmented systems mean operators can't act on it fast enough.",
       items: [
         {
           icon: Layers,
@@ -428,7 +311,7 @@ export const solutions: Solution[] = [
 
     howItWorks: {
       subtitle:
-        "From distributed sensors to a unified operations center — in one platform.",
+        "From distributed sensors to a unified operations center - in one platform.",
       steps: [
         {
           title: "Connect",
@@ -436,7 +319,7 @@ export const solutions: Solution[] = [
         },
         {
           title: "Stream",
-          desc: "Telemetry flows into dedicated channels organized by infrastructure type — traffic, energy, waste, safety — with automatic normalization.",
+          desc: "Telemetry flows into dedicated channels organized by infrastructure type - traffic, energy, waste, safety - with automatic normalization.",
         },
         {
           title: "Analyze",
@@ -479,9 +362,9 @@ export const solutions: Solution[] = [
     benefits: [
       "Reduce operational costs by up to 35% through optimized scheduling and predictive maintenance",
       "Cut incident response time from hours to minutes with real-time alerting",
-      "Single pane of glass for all urban infrastructure — no more siloed dashboards",
+      "Single pane of glass for all urban infrastructure - no more siloed dashboards",
       "Built-in multi-tenancy lets each city department manage their own view",
-      "Open source core means no vendor lock-in — extend as your needs grow",
+      "Open source core means no vendor lock-in - extend as your needs grow",
       "Enterprise-grade security with per-device credentials and role-based access control",
     ],
 
@@ -495,7 +378,7 @@ export const solutions: Solution[] = [
       {
         question: "How do you handle multi-tenancy across city departments?",
         answer:
-          "Magistrala uses domain-level isolation backed by SpiceDB policies. Each department (traffic, utilities, waste) operates in its own domain with its own device groups, channels, and user roles. Cross-domain data sharing is configured explicitly through policy grants — departments see only what they are authorized to see.",
+          "Magistrala uses domain-level isolation backed by SpiceDB policies. Each department (traffic, utilities, waste) operates in its own domain with its own device groups, channels, and user roles. Cross-domain data sharing is configured explicitly through policy grants - departments see only what they are authorized to see.",
       },
       {
         question:
@@ -506,12 +389,12 @@ export const solutions: Solution[] = [
       {
         question: "How quickly can the Smart City pack be deployed?",
         answer:
-          "The pre-configured pack installs on Magistrala Cloud in minutes — clients, channels, rules, dashboards, and alarms are all included. Custom device types and additional integrations can be added incrementally without taking the core platform offline.",
+          "The pre-configured pack installs on Magistrala Cloud in minutes - clients, channels, rules, dashboards, and alarms are all included. Custom device types and additional integrations can be added incrementally without taking the core platform offline.",
       },
     ],
 
     metaDescription:
-      "Deploy a full smart city IoT platform in minutes. The Magistrala Smart City Solution Pack includes pre-configured traffic, lighting, waste, and energy monitoring — ready out of the box.",
+      "Deploy a full smart city IoT platform in minutes. The Magistrala Smart City Solution Pack includes pre-configured traffic, lighting, waste, and energy monitoring - ready out of the box.",
     keywords: [
       "smart city IoT",
       "urban IoT platform",
@@ -532,7 +415,7 @@ export const solutions: Solution[] = [
     description:
       "Modernize energy infrastructure management with a pre-built IoT platform covering grid monitoring, renewable generation, load balancing, and demand response. The Smart Energy Pack delivers enterprise-grade telemetry and analytics without weeks of integration work.",
     heroDetail:
-      "The Smart Energy Grid Pack is engineered for energy utilities, grid operators, and industrial energy managers who need real-time visibility across generation, transmission, and consumption. It spans the full grid intelligence stack — from sub-station telemetry and renewable output monitoring to load balancing automation and demand response event management. The pack is designed to integrate with existing infrastructure while adding modern IoT-grade data processing, alerting, and analytics capabilities.",
+      "The Smart Energy Grid Pack is engineered for energy utilities, grid operators, and industrial energy managers who need real-time visibility across generation, transmission, and consumption. It spans the full grid intelligence stack - from sub-station telemetry and renewable output monitoring to load balancing automation and demand response event management. The pack is designed to integrate with existing infrastructure while adding modern IoT-grade data processing, alerting, and analytics capabilities.",
     whyMagistrala:
       "Magistrala's high-throughput message bus and persistent time-series store handle the sub-second telemetry volumes that energy grid monitoring demands, while the rules engine enables automated load control actions without any custom middleware development.",
     image: "/solutions/smart-energy.jpg",
@@ -549,62 +432,6 @@ export const solutions: Solution[] = [
       {
         src: "/screenshots/rules-engine-1.png",
         alt: "Energy demand response rules engine",
-      },
-    ],
-
-    packName: "Smart Energy Grid Pack",
-    packTagline:
-      "Grid intelligence from generation to meter — deployed instantly.",
-    packDescription:
-      "A complete smart grid monitoring stack with pre-configured clients for generation assets, distribution equipment, and end-point meters. Rules, dashboards, and alarms are pre-built for the most critical energy management scenarios.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 40,
-        description:
-          "Smart meters, inverters, grid sensors, transformer monitors, EV chargers",
-      },
-      {
-        label: "Channels",
-        count: 10,
-        description:
-          "Generation, distribution, consumption, storage, quality, demand response",
-      },
-      {
-        label: "Groups",
-        count: 4,
-        description:
-          "Generation assets, distribution network, commercial consumers, residential",
-      },
-      {
-        label: "Rules",
-        count: 20,
-        description:
-          "Overload detection, voltage sag/swell alerts, renewable curtailment, demand response triggers",
-      },
-      {
-        label: "Dashboards",
-        count: 5,
-        description:
-          "Grid overview, renewable generation, consumption heatmap, fault analysis, executive summary",
-      },
-      {
-        label: "Alarms",
-        count: 18,
-        description:
-          "Grid fault alerts, over/under voltage, power quality events, equipment failure predictions",
-      },
-      {
-        label: "Report Templates",
-        count: 4,
-        description:
-          "Daily generation summary, monthly energy audit, demand response log, grid health report",
-      },
-      {
-        label: "Templates",
-        count: 3,
-        description:
-          "Asset onboarding, tariff zone configuration, demand response enrollment",
       },
     ],
 
@@ -633,7 +460,7 @@ export const solutions: Solution[] = [
 
     howItWorks: {
       subtitle:
-        "From grid edge to operations center — real-time intelligence at every voltage level.",
+        "From grid edge to operations center - real-time intelligence at every voltage level.",
       steps: [
         {
           title: "Measure",
@@ -641,7 +468,7 @@ export const solutions: Solution[] = [
         },
         {
           title: "Normalize",
-          desc: "Incoming telemetry is timestamped, normalized by channel type, and partitioned by asset group — generation, distribution, or consumption — for clean analytics.",
+          desc: "Incoming telemetry is timestamped, normalized by channel type, and partitioned by asset group - generation, distribution, or consumption — for clean analytics.",
         },
         {
           title: "Alert",
@@ -758,59 +585,6 @@ export const solutions: Solution[] = [
       {
         src: "/screenshots/rules-engine-2.png",
         alt: "Temperature threshold rules configuration",
-      },
-    ],
-
-    packName: "Cold Chain Compliance Pack",
-    packTagline: "Continuous cold chain monitoring — compliant from day one.",
-    packDescription:
-      "A complete cold chain monitoring stack with pre-configured sensor clients, HACCP-compliant alert thresholds, automated exceedance reports, and multi-zone dashboards. Deploy across warehouses, transport fleets, and retail units with identical infrastructure.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 30,
-        description:
-          "Temperature loggers, humidity sensors, door/hatch contacts, CO₂ probes",
-      },
-      {
-        label: "Channels",
-        count: 6,
-        description:
-          "Temperature, humidity, door events, CO₂, asset location, power status",
-      },
-      {
-        label: "Groups",
-        count: 4,
-        description: "Blast freeze, cold room, chiller, refrigerated transport",
-      },
-      {
-        label: "Rules",
-        count: 25,
-        description:
-          "HACCP threshold breaches, door-open duration, defrost cycle anomalies, pre-alarm warnings",
-      },
-      {
-        label: "Dashboards",
-        count: 4,
-        description:
-          "Site overview, zone detail, exceedance log, transport tracking",
-      },
-      {
-        label: "Alarms",
-        count: 20,
-        description:
-          "Temperature exceedance (warning + critical), door-open alarms, sensor communication loss",
-      },
-      {
-        label: "Report Templates",
-        count: 5,
-        description:
-          "Daily temperature log, HACCP exceedance report, monthly compliance summary, audit-ready PDF export",
-      },
-      {
-        label: "Templates",
-        count: 3,
-        description: "Zone onboarding, HACCP plan import, escalation routing",
       },
     ],
 
@@ -961,61 +735,6 @@ export const solutions: Solution[] = [
       {
         src: "/screenshots/reports-2.png",
         alt: "Seasonal yield and resource efficiency reports",
-      },
-    ],
-
-    packName: "Precision Agriculture Pack",
-    packTagline:
-      "Field-to-dashboard intelligence — deploy before the next season.",
-    packDescription:
-      "A complete precision agriculture IoT stack with pre-configured soil, weather, and microclimate sensor clients. Irrigation automation rules, crop stress dashboards, and seasonal yield reports are included — tailored to field, greenhouse, and orchard environments.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 35,
-        description:
-          "Soil moisture probes, weather stations, leaf wetness sensors, dendrometers, flow meters",
-      },
-      {
-        label: "Channels",
-        count: 8,
-        description:
-          "Soil moisture, temperature, humidity, rainfall, wind, crop stress, irrigation flow, pest index",
-      },
-      {
-        label: "Groups",
-        count: 3,
-        description: "Field crops, greenhouse, orchard / permanent crops",
-      },
-      {
-        label: "Rules",
-        count: 12,
-        description:
-          "Irrigation trigger (VWC threshold), frost warning, heat stress, disease risk index alerts",
-      },
-      {
-        label: "Dashboards",
-        count: 3,
-        description:
-          "Field overview, irrigation management, crop stress & alerts",
-      },
-      {
-        label: "Alarms",
-        count: 10,
-        description:
-          "Frost risk, drought stress, disease pressure index, sensor battery low, irrigation over-run",
-      },
-      {
-        label: "Report Templates",
-        count: 3,
-        description:
-          "Weekly irrigation summary, monthly crop health report, seasonal water usage audit",
-      },
-      {
-        label: "Templates",
-        count: 3,
-        description:
-          "Field setup, sensor placement guide, irrigation zone configuration",
       },
     ],
 
@@ -1170,62 +889,6 @@ export const solutions: Solution[] = [
       },
     ],
 
-    packName: "Pipeline & Asset Intelligence Pack",
-    packTagline:
-      "Remote asset intelligence for critical energy infrastructure.",
-    packDescription:
-      "A complete industrial IoT stack for oil and gas asset monitoring. Pre-configured SCADA-grade clients, pressure and flow monitoring channels, leak detection rules, and safety-critical alarm management are included — deployable in field, platform, or remote pipeline environments.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 60,
-        description:
-          "Pressure transmitters, flow meters, gas detectors, vibration sensors, compressor monitors",
-      },
-      {
-        label: "Channels",
-        count: 15,
-        description:
-          "Pressure, flow, temperature, vibration, gas detection, corrosion, valve status, power",
-      },
-      {
-        label: "Groups",
-        count: 5,
-        description:
-          "Upstream wellheads, pipeline segments, compressor stations, storage, downstream processing",
-      },
-      {
-        label: "Rules",
-        count: 30,
-        description:
-          "Pressure drop anomaly (leak indicator), gas leak threshold, pump vibration baseline deviation, over-pressure lockout",
-      },
-      {
-        label: "Dashboards",
-        count: 6,
-        description:
-          "Pipeline overview, asset health, gas detection, compressor performance, maintenance backlog, executive KPIs",
-      },
-      {
-        label: "Alarms",
-        count: 25,
-        description:
-          "Safety-critical gas alarms, pipeline integrity alerts, equipment failure predictions, communication loss on remote assets",
-      },
-      {
-        label: "Report Templates",
-        count: 6,
-        description:
-          "Daily operations report, pipeline integrity summary, maintenance activity log, regulatory compliance export",
-      },
-      {
-        label: "Templates",
-        count: 4,
-        description:
-          "Well site onboarding, pipeline segment configuration, safety alarm routing, maintenance workflow",
-      },
-    ],
-
     challenges: {
       title: "Remote assets are invisible until they fail",
       subtitle:
@@ -1374,59 +1037,6 @@ export const solutions: Solution[] = [
       {
         src: "/screenshots/alarms-2.png",
         alt: "Irrigation system fault and threshold alarms",
-      },
-    ],
-
-    packName: "Smart Irrigation Pack",
-    packTagline: "Sensor-driven irrigation — deploy and stop wasting water.",
-    packDescription:
-      "A complete irrigation automation platform with pre-configured soil sensors, weather integration, valve control clients, and VWC-based scheduling rules. Designed for commercial horticulture, golf courses, parks, and large-scale landscaping operations.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 20,
-        description:
-          "Soil moisture probes, weather stations, flow meters, valve controllers, rain sensors",
-      },
-      {
-        label: "Channels",
-        count: 5,
-        description:
-          "Soil VWC, weather, irrigation flow, valve status, water budget",
-      },
-      {
-        label: "Groups",
-        count: 3,
-        description:
-          "Irrigation zones: high-demand, standard, drought-tolerant",
-      },
-      {
-        label: "Rules",
-        count: 10,
-        description:
-          "VWC-triggered irrigation start/stop, rain sensor override, daily water budget enforcement, frost hold",
-      },
-      {
-        label: "Dashboards",
-        count: 2,
-        description: "Zone management overview, water usage & budget tracker",
-      },
-      {
-        label: "Alarms",
-        count: 8,
-        description:
-          "Sensor battery low, valve stuck open/closed, water budget exceeded, flow anomaly (leak indicator)",
-      },
-      {
-        label: "Report Templates",
-        count: 3,
-        description:
-          "Weekly water usage summary, monthly water savings vs. baseline, zone performance report",
-      },
-      {
-        label: "Templates",
-        count: 2,
-        description: "Zone onboarding, irrigation schedule configuration",
       },
     ],
 
@@ -1580,62 +1190,6 @@ export const solutions: Solution[] = [
       {
         src: "/screenshots/rules-engine-1.png",
         alt: "Air quality threshold rules configuration",
-      },
-    ],
-
-    packName: "Air Quality & Compliance Pack",
-    packTagline:
-      "Real-time air quality monitoring — compliant and deployed instantly.",
-    packDescription:
-      "A complete air quality IoT stack with pre-configured multi-pollutant sensor clients, regulatory threshold rules, exceedance dashboards, and automated compliance reports. Designed for smart cities, industrial facilities, and building operators managing indoor air quality.",
-    packItems: [
-      {
-        label: "Clients",
-        count: 25,
-        description:
-          "PM2.5/PM10 sensors, CO₂ monitors, VOC detectors, NO₂/O₃ analyzers, weather stations",
-      },
-      {
-        label: "Channels",
-        count: 6,
-        description:
-          "Particulate matter, CO₂, VOC, NOₓ, O₃, meteorological conditions",
-      },
-      {
-        label: "Groups",
-        count: 3,
-        description:
-          "Outdoor ambient, indoor/occupied spaces, industrial boundary",
-      },
-      {
-        label: "Rules",
-        count: 15,
-        description:
-          "WHO/EPA/EU regulatory threshold alerts, AQI category transitions, sustained exceedance detection, calibration drift alerts",
-      },
-      {
-        label: "Dashboards",
-        count: 3,
-        description:
-          "Public AQI heatmap, indoor air quality, regulatory compliance tracker",
-      },
-      {
-        label: "Alarms",
-        count: 12,
-        description:
-          "Unhealthy AQI level alerts, regulatory exceedance notifications, sensor calibration alerts, communication loss",
-      },
-      {
-        label: "Report Templates",
-        count: 4,
-        description:
-          "Daily AQI summary, monthly pollutant trend report, regulatory submission export, industrial boundary exceedance log",
-      },
-      {
-        label: "Templates",
-        count: 3,
-        description:
-          "Sensor network onboarding, regulatory limit configuration by jurisdiction, alert routing by pollutant",
       },
     ],
 
