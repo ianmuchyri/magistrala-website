@@ -14,10 +14,9 @@ const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
 
 function renderAnswer(text: string) {
   const parts: React.ReactNode[] = [];
+  const matches = [...text.matchAll(LINK_RE)];
   let last = 0;
-  let match: RegExpExecArray | null;
-  LINK_RE.lastIndex = 0;
-  while ((match = LINK_RE.exec(text)) !== null) {
+  for (const match of matches) {
     if (match.index > last) parts.push(text.slice(last, match.index));
     parts.push(
       <Link
