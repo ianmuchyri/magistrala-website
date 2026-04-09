@@ -274,6 +274,13 @@
   color: var(--primary);
 }
 
+[data-search-full] kbd {
+  display: none;
+}
+[data-theme-toggle] {
+  cursor: pointer;
+}
+
 @utility container {
   padding-inline: 1rem;
   @media (width >= 640px) {
