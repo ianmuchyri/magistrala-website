@@ -10,7 +10,7 @@ import {
 
 const HERO_CONTENT = {
   badge: "/ Open Source IoT Platform",
-  titleLine1: "Build IoT solutions,",
+  titleLine1: "IoT solutions",
   titleLine2: "without complexity.",
   description:
     "Skip complex setups. Launch IoT and industrial solutions instantly, then customize every layer with a powerful, open-source platform.",
@@ -32,7 +32,6 @@ const HERO_CONTENT = {
       icon: Zap,
       left: "181px",
       top: "65px",
-      defaultOpen: true,
     },
     {
       id: "node-2",
@@ -42,7 +41,6 @@ const HERO_CONTENT = {
       icon: Cpu,
       left: "346px",
       top: "180px",
-      defaultOpen: false,
     },
     {
       id: "node-3",
@@ -52,7 +50,6 @@ const HERO_CONTENT = {
       icon: LineChart,
       left: "490px",
       top: "354px",
-      defaultOpen: false,
     },
   ],
   dashboardBlock: {
@@ -168,11 +165,7 @@ export async function HeroSection() {
                     className="absolute"
                     style={{ left: node.left, top: node.top }}
                   >
-                    <HoverCard
-                      defaultOpen={node.defaultOpen}
-                      openDelay={100}
-                      closeDelay={100}
-                    >
+                    <HoverCard openDelay={100} closeDelay={100}>
                       <HoverCardTrigger asChild>
                         <div className="relative cursor-pointer group">
                           <div className="absolute -translate-x-1/2 -translate-y-1/2 size-3 bg-[#073763] dark:bg-white rounded-full ring-[5px] ring-[#f8fafc] dark:ring-background group-hover:scale-110 transition-transform" />
