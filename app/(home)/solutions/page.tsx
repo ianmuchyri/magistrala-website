@@ -49,7 +49,7 @@ export default function SolutionsPage() {
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Every solution ships pre-configured — devices, channels, rules,
-            dashboards, reports and alarms included. Install on Magistrala cloud
+            dashboards, reports and alarms included. Install on Magistrala Cloud
             and start monitoring immediately.
           </p>
         </div>
