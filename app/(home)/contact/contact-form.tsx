@@ -14,11 +14,66 @@ import {
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: HTMLElement,
+        options: {
+          sitekey: string;
+          theme?: string;
+          callback?: (token: string) => void;
+        },
+      ) => string;
+      reset: (container: HTMLElement) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
+const TurnstileWidget = React.forwardRef<
+  HTMLDivElement,
+  { siteKey: string; onVerify: (token: string) => void }
+>(({ siteKey, onVerify }, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+
+  React.useImperativeHandle(ref, () => {
+    if (!containerRef.current) {
+      throw new Error("Turnstile container is not mounted");
+    }
+    return containerRef.current;
+  });
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || !window.turnstile) return;
+
+    widgetId.current = window.turnstile.render(el, {
+      sitekey: siteKey,
+      theme: "auto",
+      callback: onVerify,
+    });
+
+    return () => {
+      if (widgetId.current) {
+        window.turnstile?.remove(widgetId.current);
+        widgetId.current = null;
+      }
+    };
+  }, [siteKey, onVerify]);
+
+  return <div ref={containerRef} />;
+});
+TurnstileWidget.displayName = "TurnstileWidget";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -32,11 +87,26 @@ export function ContactForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const turnstileToken = useRef<string>("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  const resetTurnstile = useCallback(() => {
+    turnstileToken.current = "";
+    if (turnstileRef.current && window.turnstile) {
+      window.turnstile.reset(turnstileRef.current);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
+
+    if (TURNSTILE_SITE_KEY && !turnstileToken.current) {
+      setStatus("error");
+      setErrorMessage("Please complete the verification challenge.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/contact", {
@@ -44,12 +114,22 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          "cf-turnstile-response": turnstileToken.current,
+        }),
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Failed to send message");
+        const data: unknown = await response.json();
+        const errorMessage =
+          typeof data === "object" &&
+          data !== null &&
+          "error" in data &&
+          typeof data.error === "string"
+            ? data.error
+            : "Failed to send message";
+        throw new Error(errorMessage);
       }
 
       setStatus("success");
@@ -65,6 +145,7 @@ export function ContactForm() {
       setErrorMessage(
         error instanceof Error ? error.message : "Failed to send message",
       );
+      resetTurnstile();
     }
   };
 
@@ -255,6 +336,16 @@ export function ContactForm() {
                     rows={8}
                   />
                 </div>
+
+                {TURNSTILE_SITE_KEY && (
+                  <TurnstileWidget
+                    siteKey={TURNSTILE_SITE_KEY}
+                    ref={turnstileRef}
+                    onVerify={(token) => {
+                      turnstileToken.current = token;
+                    }}
+                  />
+                )}
 
                 <Button
                   type="submit"
