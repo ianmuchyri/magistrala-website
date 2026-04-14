@@ -92,7 +92,7 @@ export const linkItems: LinkItemType[] = [
   {
     type: "icon",
     label: "github",
-    text: "Github",
+    text: "GitHub",
     url: "https://github.com/absmach/magistrala",
     icon: (
       <svg

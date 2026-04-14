@@ -63,7 +63,7 @@ const HERO_CONTENT = {
     { id: "stat-1", value: "13+", label: "Global\nPartners" },
     { id: "stat-2", value: "50+", label: "Deployments" },
     { id: "stat-3", value: "4+", label: "Protocols \n Supported" },
-    { id: "stat-4", value: "2.5k+", label: "Github Stars" },
+    { id: "stat-4", value: "2.5k+", label: "GitHub Stars" },
   ],
 };
 
@@ -167,14 +167,19 @@ export async function HeroSection() {
                   >
                     <HoverCard openDelay={100} closeDelay={100}>
                       <HoverCardTrigger asChild>
-                        <div className="relative cursor-pointer group">
-                          <div className="absolute -translate-x-1/2 -translate-y-1/2 size-3 bg-[#073763] dark:bg-white rounded-full ring-[5px] ring-[#f8fafc] dark:ring-background group-hover:scale-110 transition-transform" />
-                          <div className="absolute left-4 -bottom-px pb-1.5 pr-12 whitespace-nowrap border-b-[1.5px] border-slate-300 dark:border-slate-600 mask-[linear-gradient(to_right,black_60%,transparent_100%)] group-hover:border-[#073763] dark:group-hover:border-white transition-colors">
-                            <span className="text-[14.5px] font-medium text-slate-800 dark:text-slate-200 group-hover:text-[#073763] dark:group-hover:text-white transition-colors">
-                              {node.label}
-                            </span>
+                        <Button
+                          variant="link"
+                          className="-translate-x-1/2 -translate-y-1/2"
+                        >
+                          <div className="relative cursor-pointer group">
+                            <div className="absolute -translate-x-1/2 -translate-y-1/2 size-3 bg-[#073763] dark:bg-white rounded-full ring-[5px] ring-[#f8fafc] dark:ring-background group-hover:scale-110 transition-transform" />
+                            <div className="absolute left-4 -bottom-px pb-1.5 pr-12 whitespace-nowrap border-b-[1.5px] border-slate-300 dark:border-slate-600 mask-[linear-gradient(to_right,black_60%,transparent_100%)] group-hover:border-[#073763] dark:group-hover:border-white transition-colors">
+                              <span className="text-[14.5px] font-medium text-slate-800 dark:text-slate-200 group-hover:text-[#073763] dark:group-hover:text-white transition-colors">
+                                {node.label}
+                              </span>
+                            </div>
                           </div>
-                        </div>
+                        </Button>
                       </HoverCardTrigger>
                       <HoverCardContent
                         side="left"
