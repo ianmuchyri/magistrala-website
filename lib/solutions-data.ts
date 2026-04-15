@@ -27,11 +27,10 @@ import {
   Timer,
   TrendingDown,
   Truck,
+  Users,
   Wind,
   Wrench,
   Zap,
-  Map,
-  Users,
 } from "lucide-react";
 
 // ─── Common sub-structures ─────────────────────────────────────────────────
@@ -1039,15 +1038,15 @@ export const solutions: Solution[] = [
     docsPath: "/docs/user-guide/solution-packs/smart-irrigation/",
     dashboardScreenshots: [
       {
-        src: "/screenshots/solutions/smart-irrigation/field-operations.png",
+        src: "/screenshots/solutions/smart-irrigation/field-operations-dashboard.png",
         alt: "Field Operations Dashboard with zone soil moisture gauges, flow charts, tank level, and valve control switches",
       },
       {
-        src: "/screenshots/solutions/smart-irrigation/irrigation-analytics.png",
+        src: "/screenshots/solutions/smart-irrigation/irrigation-analytics-dashboard.png",
         alt: "Irrigation Analytics Dashboard with 7-day soil moisture trends and daily water consumption by zone",
       },
       {
-        src: "/screenshots/solutions/smart-irrigation/alarm-monitoring.png",
+        src: "/screenshots/solutions/smart-irrigation/alarms-dashboard.png",
         alt: "Alarm Monitoring Dashboard with active alarm counts by severity and full alarm triage table",
       },
       {
@@ -1055,8 +1054,16 @@ export const solutions: Solution[] = [
         alt: "Zone Monitoring Template showing per-zone soil moisture, flow rate, rainfall, and valve control",
       },
       {
+        src: "/screenshots/solutions/smart-irrigation/zone-monitoring-template-dual.png",
+        alt: "Zone Monitoring Template showing per-zone soil moisture, flow rate, rainfall, and valve control for both zones",
+      },
+      {
         src: "/screenshots/solutions/smart-irrigation/field-report-template.png",
         alt: "Field Report Template with soil moisture history, total water consumed, and device battery status",
+      },
+      {
+        src: "/screenshots/solutions/smart-irrigation/field-report-template-dual.png",
+        alt: "Field Report Template with soil moisture history, total water consumed, and device battery status for both zones",
       },
     ],
 
@@ -1122,7 +1129,7 @@ export const solutions: Solution[] = [
           desc: "Soil moisture at canopy depth tells you when vines or trees are drawing on reserves. Irrigation runs only when needed. Waterlogging alarms prevent root rot during wet spells.",
         },
         {
-          icon: Map,
+          icon: MapIcon,
           title: "Multi-zone landscape and turf management",
           desc: "Golf courses, sports grounds, and municipal parks monitor each irrigation zone independently. Zone managers see only their assigned area. Pipe burst alarms prevent overnight water loss.",
         },

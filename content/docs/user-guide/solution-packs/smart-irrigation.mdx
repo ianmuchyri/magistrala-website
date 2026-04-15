@@ -23,9 +23,9 @@ Operators work with three pre-built dashboards: a field operations map with live
 
 **End-to-end field telemetry pipeline.** The pack provisions ten device clients across two independent irrigation zones, three channels (Telemetry, Commands, and Alerts), and two zone groups for access control. Every SenML record that arrives in the Telemetry Channel is processed continuously by detection rules, so alarm latency is governed by your device's publish interval, not a polling schedule.
 
-{/* ![Provisioned device clients](/screenshots/solutions/smart-irrigation/solution-clients.png) */}
+![Provisioned device clients](/screenshots/solutions/smart-irrigation/solution-clients.png)
 
-{/* ![Provisioned channels](/screenshots/solutions/smart-irrigation/solution-channels.png) */}
+![Provisioned channels](/screenshots/solutions/smart-irrigation/solution-channels.png)
 
 **Multi-threshold soil moisture monitoring.** The Dry Soil Alert rule raises a Warning (Severity 3) when soil moisture drops below 35% — the threshold where most crops begin to experience water stress — and escalates to Critical (Severity 5) when it falls below 20%, the point of permanent wilting risk. The Waterlogging Alert raises a Warning (Severity 3) when moisture exceeds 85%, detecting drainage failure and over-irrigation before root damage or anaerobic soil conditions develop.
 
@@ -41,13 +41,13 @@ Operators work with three pre-built dashboards: a field operations map with live
 
 **Role-differentiated dashboards and templates.** Three operational dashboards serve domain admins: the Field Operations Dashboard for live zone control, the Irrigation Analytics Dashboard for historical trend analysis, and the Alarm Monitoring Dashboard for alarm triage. Two dashboard templates use tag-based device references — Zone Monitoring for zone managers and Field Report for farmers — so a single template definition scales to any number of zones or accounts without duplicating configuration.
 
-{/* ![Provisioned dashboards](/screenshots/solutions/smart-irrigation/solution-dashboards.png) */}
+![Provisioned dashboards](/screenshots/solutions/smart-irrigation/solution-dashboards.png)
 
 **Automated reporting.** Three report schedules run without manual intervention: a daily water consumption report (hourly sum of `total_volume` from both flow meters), a weekly soil health report (daily average `soil_moisture` and `soil_temperature` per zone), and a monthly water efficiency report (total volume consumed and cumulative pump energy for water budget reconciliation and energy cost analysis).
 
-{/* ![Provisioned report schedules](/screenshots/solutions/smart-irrigation/solution-reports.png) */}
+![Provisioned report schedules](/screenshots/solutions/smart-irrigation/solution-reports.png)
 
-{/* ![Provisioned automation rules](/screenshots/solutions/smart-irrigation/solution-rules.png) */}
+![Provisioned automation rules](/screenshots/solutions/smart-irrigation/solution-rules.png)
 
 ## Getting Started
 
@@ -141,7 +141,7 @@ The Field Operations Dashboard is the primary operational view for farm managers
 
 **Smart Valve — Zone A and Zone B** are switch widgets that send open/close commands to the respective smart valve actuators via the Commands Channel.
 
-{/* ![Field Operations Dashboard](/screenshots/solutions/smart-irrigation/field-operations.png) */}
+![Field Operations Dashboard](/screenshots/solutions/smart-irrigation/field-operations-dashboard-full.png)
 
 ### Irrigation Analytics Dashboard
 
@@ -157,7 +157,7 @@ The Irrigation Analytics Dashboard is the historical analysis view for agronomis
 
 **Pump Energy Consumption** is a bar chart of hourly `pump_energy` over the past 24 hours. It supports energy efficiency tracking and helps identify pump cycles that run longer than expected — often a sign of a slow leak or valve that failed to close.
 
-{/* ![Irrigation Analytics Dashboard](/screenshots/solutions/smart-irrigation/irrigation-analytics.png) */}
+![Irrigation Analytics Dashboard](/screenshots/solutions/smart-irrigation/irrigation-analytics-dashboard-full.png)
 
 ### Alarm Monitoring Dashboard
 
@@ -173,7 +173,7 @@ The Alarm Monitoring Dashboard is the triage centre for open alarms. It gives op
 
 **All Alarms** is a full alarm table showing every open alarm with columns for severity, status, measurement, cause, value, threshold, created timestamp, and last updated timestamp. Operators use this table to acknowledge alarms and track resolution without leaving the dashboard.
 
-{/* ![Alarm Monitoring Dashboard](/screenshots/solutions/smart-irrigation/alarm-monitoring.png) */}
+![Alarm Monitoring Dashboard](/screenshots/solutions/smart-irrigation/alarms-dashboard.png)
 
 ### Zone Monitoring Template
 
@@ -181,7 +181,7 @@ The Zone Monitoring template is an operator-assigned view for per-zone situation
 
 The template shows five widgets: a live soil moisture gauge, a flow rate line chart, a rainfall value card, a daily water usage bar chart (hourly `total_volume` over the past 24 hours), and a valve control switch. Zone managers assigned to a zone see only the devices in their zone, enforced by the group-based access control that governs template assignment.
 
-{/* ![Zone Monitoring Template](/screenshots/solutions/smart-irrigation/zone-monitoring-template.png) */}
+![Zone Monitoring Template](/screenshots/solutions/smart-irrigation/zone-monitoring-template.png)
 
 ### Field Report Template
 
@@ -189,7 +189,7 @@ The Field Report template is a farmer-facing view. It uses `device:soil-moisture
 
 The template shows five widgets: a 7-day soil moisture history line chart, a cumulative water consumed value card (`total_volume`), a current air temperature value card, a humidity value card, and a battery status value card so farmers can see if any of their field devices need attention. Farmers with portal access see data for their own field only.
 
-{/* ![Field Report Template](/screenshots/solutions/smart-irrigation/field-report-template.png) */}
+![Field Report Template](/screenshots/solutions/smart-irrigation/field-report-template.png)
 
 ## Rules & Automation
 
