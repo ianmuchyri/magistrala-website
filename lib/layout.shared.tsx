@@ -4,15 +4,21 @@ import Logo from "@/public/logo.svg";
 
 const solutionItems = [
   {
+    text: "Smart Water Metering",
+    url: "/solutions/smart-water",
+    description: "Eliminate NRW and automate AMI billing in real time.",
+  },
+  {
+    text: "Smart Irrigation",
+    url: "/solutions/smart-irrigation",
+    description:
+      "Sensor-driven irrigation schedules that eliminate water waste.",
+  },
+  {
     text: "Smart City",
     url: "/solutions/smart-city",
     description:
       "Unify traffic, energy, and civic infrastructure in one dashboard.",
-  },
-  {
-    text: "Smart Water Metering",
-    url: "/solutions/smart-water",
-    description: "Eliminate NRW and automate AMI billing in real time.",
   },
   {
     text: "Smart Energy",
@@ -33,12 +39,6 @@ const solutionItems = [
     text: "Oil & Gas",
     url: "/solutions/oil-gas",
     description: "Pipeline integrity monitoring and predictive maintenance.",
-  },
-  {
-    text: "Smart Irrigation",
-    url: "/solutions/smart-irrigation",
-    description:
-      "Sensor-driven irrigation schedules that eliminate water waste.",
   },
   {
     text: "Air Quality",

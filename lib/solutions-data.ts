@@ -1033,7 +1033,7 @@ export const solutions: Solution[] = [
     heroDetail:
       "Six detection rules monitor the field around the clock — catching dry soil before crops reach wilting point, waterlogging before root damage sets in, pipe bursts before significant water is lost, and low tank levels before the pump runs dry. Valve and pump control sit directly on the dashboard so operators can respond without leaving the monitoring view.",
     whyMagistrala:
-      "Your existing field sensors probably already speak MQTT or HTTP, so there is nothing to replace in the field. All ten device types — soil sensors, weather stations, flow meters, valves, tank sensor, pump — connect to the same Telemetry Channel and flow through the same rules. One Zone Monitoring template scales to any number of irrigation zones without duplicating configuration. Soil health and water consumption reports go out automatically every week.",
+      "Your existing field sensors probably already speak one of our protocols, so there is nothing to replace in the field. All ten device types — soil sensors, weather stations, flow meters, valves, tank sensor, pump — connect to the same Telemetry Channel and flow through the same rules. One Zone Monitoring template scales to any number of irrigation zones without duplicating configuration. Soil health and water consumption reports go out automatically every week.",
     image: "/solutions/smart-irrigation.jpg",
     docsPath: "/docs/user-guide/solution-packs/smart-irrigation/",
     dashboardScreenshots: [
