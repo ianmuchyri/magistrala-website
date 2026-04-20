@@ -48,7 +48,7 @@ const stories = [
 export function SuccessStories() {
   return (
     <section className="py-24 container mx-auto bg-background">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Success Stories
@@ -58,7 +58,7 @@ export function SuccessStories() {
           </h2>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {stories.map((story) => (
             <div
               key={story.name}

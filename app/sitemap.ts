@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { MetadataRoute } from "next";
+import { solutions } from "@/lib/solutions-data";
 import { source } from "@/lib/source";
-import { useCases } from "@/lib/use-cases-data";
 
 const DOMAIN =
   process.env.NEXT_PUBLIC_SITE_URL || "https://magistrala.absmach.eu";
@@ -56,19 +56,18 @@ function collectPages(dir: string, route = ""): MetadataRoute.Sitemap {
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = collectPages(path.join(process.cwd(), "app"));
 
-  for (const uc of useCases) {
-    pages.push({
-      url: `${DOMAIN}/use-cases/${uc.slug}/`,
-      priority: 0.8,
-      changeFrequency: "monthly",
-    });
-  }
-
   for (const page of source.getPages()) {
     pages.push({
       url: `${DOMAIN}${page.url}`,
       priority: 0.7,
       changeFrequency: "weekly",
+    });
+  }
+
+  for (const solution of solutions) {
+    pages.push({
+      url: `${DOMAIN}/solutions/${solution.slug}/`,
+      lastModified: new Date(),
     });
   }
 

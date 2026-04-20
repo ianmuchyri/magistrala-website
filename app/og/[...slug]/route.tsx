@@ -1,6 +1,6 @@
 import { ImageResponse } from "@takumi-rs/image-response";
+import { solutions } from "@/lib/solutions-data";
 import { getPageImage, source } from "@/lib/source";
-import { useCases } from "@/lib/use-cases-data";
 
 export const revalidate = false;
 
@@ -81,9 +81,9 @@ export function generateStaticParams() {
     { slug: ["imprint", "image.webp"] },
     { slug: ["contact", "image.webp"] },
     { slug: ["terms", "image.webp"] },
-    { slug: ["use-cases", "image.webp"] },
-    ...useCases.map((uc) => ({
-      slug: ["use-cases", uc.slug, "image.webp"],
+    { slug: ["solutions", "image.webp"] },
+    ...solutions.map((s) => ({
+      slug: ["solutions", s.slug, "image.webp"],
     })),
   ];
 
