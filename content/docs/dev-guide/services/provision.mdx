@@ -63,7 +63,7 @@ access-control-expose-headers: Location
 {"access_token":"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzk0ODU4MDYsImlhdCI6MTczOTQ4MjIwNiwiaXNzIjoic3VwZXJtcS5hdXRoIiwidHlwZSI6MCwidXNlciI6IjBkNDA5NDgyLTA3MzctNDVlYS04Mjg0LTViZDg4MDU5ZjYyNSJ9.nFeihdM7KQJKr_2WQaKUFqBGWVw1qfjh0N6Uc5C6UXc2ugtm4LCf0sjDawi9ok_szk0fQeWWX8bqOsnEvhobZA","refresh_token":"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzk1Njg2MDYsImlhdCI6MTczOTQ4MjIwNiwiaXNzIjoic3VwZXJtcS5hdXRoIiwidHlwZSI6MSwidXNlciI6IjBkNDA5NDgyLTA3MzctNDVlYS04Mjg0LTViZDg4MDU5ZjYyNSJ9.DbaMpgVPtL7ER5wlsFmVtC3izKgjB66qsl1beT0qnlcWcfp7NQyvBtT0EW3OyibcqG56SnqO0ye1mzaJLgViqg"}
 ```
 
-For more information about the Users service API, please check out the [API documentation](https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fusers.yaml).
+For more information about the Users service API, please check out the [API documentation](https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fhttp.yaml&service=users.yaml).
 
 ## System Provisioning
 
@@ -387,7 +387,7 @@ date: Tue, 04 Apr 2023 09:57:53 GMT
 access-control-expose-headers: Location
 ```
 
-For more information about the Clients service API, please check out the [API documentation](https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fclients.yaml).
+For more information about the Clients service API, please check out the [API documentation](https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fhttp.yaml&service=clients.yaml).
 
 ## Provision Service
 
@@ -397,10 +397,10 @@ Provision service provides an HTTP API to interact with [Magistrala][provision-a
 
 For gateways to communicate with [Magistrala][magistrala] configuration is required (MQTT host, client, channels, certificates...). Gateway will send a request to [Bootstrap][bootstrap] service providing `<external_id>` and `<external_key>` in HTTP request to get the configuration. To make a request to [Bootstrap][bootstrap] service you can use [Agent][agent] service on a gateway.
 
-To create bootstrap configuration you can use [Bootstrap][bootstrap] or `Provision` service. [Magistrala UI][mgui] uses [Bootstrap][bootstrap] service for creating gateway configurations. `Provision` service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many clients and channels that your setup requires.
+To create bootstrap configuration you can use [Bootstrap][bootstrap] or `Provision` service. Magistrala UI uses [Bootstrap][bootstrap] service for creating gateway configurations. `Provision` service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many clients and channels that your setup requires.
 
 Also, you may use provision service to create certificates for each client. Each service running on gateway may require more than one client and channel for communication.
-If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one client for `Export`.
+If, for example, you are using services [Agent][agent] and Export on a gateway you will need two channels for `Agent` (`data` and `control`) and one client for `Export`.
 Additionally, if you enabled mTLS each service will need its own client and certificate for access to [Magistrala][magistrala].
 Your setup could require any number of clients and channels, this kind of setup we can call `provision layout`.
 
@@ -410,7 +410,7 @@ Provision service provides a way of specifying this `provision layout` and creat
 
 The service is configured using the environment variables presented in the following [table][config]. Note that any unset variables will be replaced with their default values.
 
-By default, call to `/mapping` endpoint will create one client and two channels (`control` and `data`) and connect it as this is typical setup required by [Agent](./edge#agent). If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables.
+By default, call to `/mapping` endpoint will create one client and two channels (`control` and `data`) and connect it as this is typical setup required by [Agent](/docs/dev-guide/edge#agent). If there is a requirement for different provision layout we can use [config][conftoml] file in addition to environment variables.
 
 For the purposes of running provision as an add-on in docker composition environment variables seems more suitable. Environment variables are set in [.env][env].
 
@@ -514,12 +514,12 @@ Example of provision layout below
 ### Authentication
 
 In order to create necessary entities provision service needs to authenticate against Magistrala.
-To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Magistrala user and password or as API token (that can be issued on `/users/tokens/issue` endpoint of [users service][users].
+To provide authentication credentials to the provision service you can pass them in as environment variables, in a config file as Magistrala user credentials, or as an API token issued on the `/users/tokens/issue` endpoint of the [users service][users].
 
 Additionally, users or API token can be passed in Authorization header, this authentication takes precedence over others.
 
-- `username`, `password` - (`MG_PROVISION_USER`, `MG_PROVISION_PASSWORD` in [.env][env], `MG_user`, `MG_pass` in [config.toml][conftoml]
-- API Key - (`MG_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml]
+- `username`, `password` - (`MG_PROVISION_USER`, `MG_PROVISION_PASSWORD` in [.env][env], `MG_user`, `MG_pass` in [config.toml][conftoml])
+- API Key - (`MG_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml])
 - `Authorization: Bearer Token|ApiKey` - request authorization header containing users token. Check [auth][auth].
 
 ### Running
@@ -655,17 +655,15 @@ MG_AGENT_BOOTSTRAP_ID=gateway MG_AGENT_BOOTSTRAP_KEY=external_key MG_AGENT_BOOTS
 
 Agent will retrieve connections parameters and connect to Magistrala cloud.
 
-For more information about the Provision service API, please check out this [API documentation](https://github.com/absmach/magistrala/tree/main/provision#readme).
+For more information about the Provision service, please check out the [service source and implementation][provision-api].
 
 [magistrala]: https://github.com/absmach/magistrala
-[bootstrap]: https://github.com/absmach/magistrala/tree/main/bootstrap
+[bootstrap]: /docs/dev-guide/services/bootstrap
 [agent]: https://github.com/absmach/agent
 [config]: https://github.com/absmach/magistrala/tree/main/provision#configuration
 [env]: https://github.com/absmach/magistrala/blob/main/docker/.env
-[mgui]: https://github.com/absmach/magistrala-ui-new
 [conftoml]: https://github.com/absmach/magistrala/blob/main/docker/addons/provision/configs/config.toml
-[users]: https://github.com/absmach/magistrala/blob/main/users/README.md
-[exp]: https://github.com/absmach/export
-[cli]: https://github.com/absmach/magistrala/tree/main/cli
-[auth]: authentication
-[provision-api]: https://absmach.github.io/magistrala/?urls.primaryName=provision.yml
+[users]: /docs/dev-guide/services/users
+[cli]: /docs/dev-guide/cli/introduction-to-cli
+[auth]: /docs/dev-guide/dev-tools/authentication
+[provision-api]: https://github.com/absmach/magistrala/tree/main/provision
