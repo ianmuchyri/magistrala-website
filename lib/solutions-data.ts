@@ -3,6 +3,7 @@ import {
   AlertTriangle,
   BarChart3,
   Building2,
+  Clock,
   CloudRain,
   Cpu,
   DollarSign,
@@ -26,6 +27,7 @@ import {
   Timer,
   TrendingDown,
   Truck,
+  Users,
   Wind,
   Wrench,
   Zap,
@@ -1023,152 +1025,169 @@ export const solutions: Solution[] = [
   {
     title: "Smart Irrigation",
     slug: "smart-irrigation",
-    icon: CloudRain,
+    icon: Sprout,
     summary:
-      "Trigger precise watering schedules automatically based on live soil moisture and weather forecast data.",
+      "Most farms find out about burst irrigation pipes from wet ground the next morning, not from an alarm. This pack connects your field sensors and actuators to a single platform, catches problems within seconds of threshold breach, and files your weekly soil health and water efficiency reports automatically.",
     description:
-      "Replace manual and calendar-based irrigation schedules with real-time, sensor-driven automation. The Smart Irrigation Pack connects soil moisture sensors, weather stations, and valve controllers into a fully automated, decision-making irrigation platform.",
+      "The Smart Irrigation pack gives farms and managed landscapes a live view of soil conditions, water flow, and tank levels across multiple field zones. Soil moisture sensors, weather stations, flow meters, smart valves, and a pump controller all land in pre-built dashboards with detection rules and scheduled reports already wired up. When soil moisture drops below the wilting threshold at 3 AM, the alarm fires and the email goes out before the crop is stressed.",
     heroDetail:
-      "The Smart Irrigation Pack transforms manual and calendar-driven irrigation programs into responsive, data-driven automation. It integrates soil moisture sensors, weather station feeds, evapotranspiration models, and valve controllers into a single decision-making platform that automatically triggers, adjusts, and reports on irrigation events. The pack is designed for commercial horticulture, turf management, parks, and municipal landscape operations — providing measurable water savings, root-zone precision, and plant health insights without custom programming.",
+      "Six detection rules monitor the field around the clock — catching dry soil before crops reach wilting point, waterlogging before root damage sets in, pipe bursts before significant water is lost, and low tank levels before the pump runs dry. Valve and pump control sit directly on the dashboard so operators can respond without leaving the monitoring view.",
     whyMagistrala:
-      "Magistrala's rule engine enables multi-condition irrigation triggers — combining soil VWC thresholds, weather forecast data, and scheduled watering windows — while its device command capabilities provide the two-way valve control needed for fully automated field operations.",
+      "Your existing field sensors probably already speak one of our protocols, so there is nothing to replace in the field. All ten device types — soil sensors, weather stations, flow meters, valves, tank sensor, pump — connect to the same Telemetry Channel and flow through the same rules. One Zone Monitoring template scales to any number of irrigation zones without duplicating configuration. Soil health and water consumption reports go out automatically every week.",
     image: "/solutions/smart-irrigation.jpg",
+    docsPath: "/docs/user-guide/solution-packs/smart-irrigation/",
     dashboardScreenshots: [
       {
-        src: "/screenshots/dashboard-1.png",
-        alt: "Smart irrigation zone management dashboard",
+        src: "/screenshots/solutions/smart-irrigation/field-operations-dashboard.png",
+        alt: "Field Operations Dashboard with zone soil moisture gauges, flow charts, tank level, and valve control switches",
       },
       {
-        src: "/screenshots/rules-engine-2.png",
-        alt: "Soil moisture and ET-based irrigation rules",
+        src: "/screenshots/solutions/smart-irrigation/irrigation-analytics-dashboard.png",
+        alt: "Irrigation Analytics Dashboard with 7-day soil moisture trends and daily water consumption by zone",
       },
       {
-        src: "/screenshots/reports-1.png",
-        alt: "Water usage and irrigation efficiency reports",
+        src: "/screenshots/solutions/smart-irrigation/alarms-dashboard.png",
+        alt: "Alarm Monitoring Dashboard with active alarm counts by severity and full alarm triage table",
       },
       {
-        src: "/screenshots/alarms-2.png",
-        alt: "Irrigation system fault and threshold alarms",
+        src: "/screenshots/solutions/smart-irrigation/zone-monitoring-template.png",
+        alt: "Zone Monitoring Template showing per-zone soil moisture, flow rate, rainfall, and valve control",
+      },
+      {
+        src: "/screenshots/solutions/smart-irrigation/zone-monitoring-template-dual.png",
+        alt: "Zone Monitoring Template showing per-zone soil moisture, flow rate, rainfall, and valve control for both zones",
+      },
+      {
+        src: "/screenshots/solutions/smart-irrigation/field-report-template.png",
+        alt: "Field Report Template with soil moisture history, total water consumed, and device battery status",
+      },
+      {
+        src: "/screenshots/solutions/smart-irrigation/field-report-template-dual.png",
+        alt: "Field Report Template with soil moisture history, total water consumed, and device battery status for both zones",
       },
     ],
 
     challenges: {
-      title: "Calendar irrigation wastes water and stresses crops",
+      title: "Problems farms deal with every season",
       subtitle:
-        "Fixed-schedule irrigation systems ignore actual soil conditions, weather events, and plant needs — leading to both over-watering and drought stress.",
+        "The agronomic and financial costs of reactive irrigation management add up. These are the specific pain points the solution pack addresses.",
       items: [
         {
-          icon: Droplets,
-          title: "Over-Irrigation",
-          desc: "Fixed schedules continue watering through rain events and after rainfall, wasting significant water volumes and leaching nutrients from the root zone.",
-        },
-        {
           icon: AlertTriangle,
-          title: "Crop & Turf Stress",
-          desc: "Conversely, hot or windy periods between scheduled irrigation cycles cause avoidable drought stress that impacts quality and yield.",
+          title: "Finding out about burst pipes from wet ground, not telemetry",
+          desc: "A burst irrigation pipe in the early hours drains the tank, wastes water, and can leave an entire zone unirrigated. The alarm should fire before the water is gone.",
         },
         {
-          icon: DollarSign,
-          title: "High Water & Energy Costs",
-          desc: "Inefficient irrigation is directly reflected in water utility bills and pumping energy costs — both of which are amenable to significant savings with sensor feedback.",
+          icon: BarChart3,
+          title:
+            "No visibility into how much water each zone is actually using",
+          desc: "Without zone-level flow data, water budgets are estimates at best. Comparing consumption against scheduled volumes is a spreadsheet job done after the fact.",
+        },
+        {
+          icon: Clock,
+          title: "Soil health reports assembled manually every week",
+          desc: "Pulling moisture and temperature readings from sensors, averaging them per zone, and formatting the output for the agronomist. Every single week, by hand.",
         },
       ],
     },
 
     howItWorks: {
-      subtitle:
-        "From soil sensor to valve — fully automated, weather-aware irrigation.",
+      subtitle: "Four steps from field sensor to actionable decision",
       steps: [
         {
-          title: "Sense",
-          desc: "Soil moisture probes at root depth and weather stations stream continuous VWC, temperature, humidity, rainfall, and wind data into Magistrala.",
+          title: "Ingest",
+          desc: "Soil sensors, weather stations, flow meters, valves, and the pump controller publish SenML readings over MQTT, HTTP, CoAP, or WebSocket. Every raw reading is saved immediately to the Telemetry Channel.",
         },
         {
-          title: "Evaluate",
-          desc: "VWC rules compare current soil moisture against crop-specific target ranges. Evapotranspiration calculations factor in weather data to determine real-time irrigation demand.",
+          title: "Detect",
+          desc: "Six rules watch the incoming data continuously. Moisture drops below 35%? Dry soil warning. Flow spikes above 40 L/min? Pipe burst alarm. Tank below 25%? Refill warning. Rainfall above 2 mm? Schedule review alert.",
         },
         {
-          title: "Schedule",
-          desc: "Irrigation trigger rules fire valve-open commands when soil VWC drops below threshold — and valve-close commands when the target is reached or rain is detected.",
+          title: "Control",
+          desc: "Valve and pump switches on the Field Operations Dashboard send commands directly to actuators via the Commands Channel. Operators respond without leaving the monitoring view or opening a separate control interface.",
         },
         {
           title: "Report",
-          desc: "Water usage data is aggregated by zone and compared against baseline estimates. Automated weekly and monthly reports show savings vs. calendar-based benchmarks.",
+          desc: "Daily water consumption, weekly soil health, and monthly water efficiency reports go out automatically by email. Long-term moisture and volume trends feed into seasonal irrigation planning.",
         },
       ],
     },
 
     applications: {
       title: "Key Applications",
-      subtitle: "Where smart irrigation is deployed with this pack",
+      subtitle:
+        "Where farms and land managers deploy smart irrigation monitoring",
       items: [
         {
-          icon: Droplets,
-          title: "Zone-Based Precision Irrigation",
-          desc: "Individual irrigation zones are managed by independent VWC rules, matching water delivery to the specific needs of each soil type and plant variety.",
-        },
-        {
-          icon: CloudRain,
-          title: "Weather-Responsive Scheduling",
-          desc: "Rain sensor and weather data integration provides automatic irrigation holds during and after rainfall events, preventing over-watering and nutrient runoff.",
+          icon: Leaf,
+          title: "Arable farming and precision crop irrigation",
+          desc: "Zone-level soil moisture drives irrigation decisions rather than fixed schedules. Dry soil alarms fire before crops are stressed. Daily volume reports close the loop on water spend.",
         },
         {
           icon: Gauge,
-          title: "Water Budget Management",
-          desc: "Daily and monthly water budget rules enforce usage limits, ensuring compliance with water authority restrictions during drought periods.",
+          title: "Vineyard and orchard water stress management",
+          desc: "Soil moisture at canopy depth tells you when vines or trees are drawing on reserves. Irrigation runs only when needed. Waterlogging alarms prevent root rot during wet spells.",
         },
         {
-          icon: Activity,
-          title: "Leak Detection",
-          desc: "Flow meter anomaly rules detect continuous flow when valves should be closed — flagging broken pipes, stuck valve actuators, or vandalism events.",
+          icon: MapIcon,
+          title: "Multi-zone landscape and turf management",
+          desc: "Golf courses, sports grounds, and municipal parks monitor each irrigation zone independently. Zone managers see only their assigned area. Pipe burst alarms prevent overnight water loss.",
+        },
+        {
+          icon: Users,
+          title: "Shared farmland and tenant irrigation accounts",
+          desc: "Each farmer sees their own field's moisture history, water consumed, and device battery status through the Field Report template. Aggregate consumption and alarm data stay with the farm manager.",
         },
       ],
     },
 
     benefits: [
-      "Reduce irrigation water use by 20–40% compared to calendar-based schedules",
-      "Eliminate crop and turf stress from under-irrigation with continuous soil moisture feedback",
-      "Automatic rain sensor overrides prevent wasteful irrigation during and after rainfall",
-      "Comply with water authority restrictions using built-in water budget rules and usage reporting",
-      "Detect irrigation leaks automatically with flow meter anomaly detection",
-      "Scale from single site to multi-property portfolio without re-configuration — add zones instantly",
+      "Dry soil alarms fire within seconds of threshold breach — before crop stress develops, not after a field inspection the next morning",
+      "Pipe burst alarms trigger at 40 L/min, giving operators time to close the zone valve before the tank drains and the pump runs dry",
+      "Zone-level total volume data closes the gap between water budget targets and actual consumption without manual data collection",
+      "Weekly soil health reports aggregate daily average moisture and temperature per zone and deliver automatically — no manual data assembly",
+      "Monthly water efficiency reports combine zone volume and pump energy into a single PDF for water cost and budget reconciliation",
+      "Tag-based Zone Monitoring and Field Report templates scale to any number of zones or farmer accounts from a single template definition",
+      "Valve and pump control from the Field Operations Dashboard reduces response time to soil or flow alarms without requiring a separate control system",
     ],
 
     faq: [
       {
-        question: "What irrigation controllers and valve types are supported?",
+        question:
+          "Our soil sensors use a proprietary serial protocol. Can we still connect them?",
         answer:
-          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Valve controllers that publish over MQTT connect directly. Controllers using Modbus or proprietary protocols connect via an external adapter. Valve open/close commands are published through Magistrala channels and execute with sub-second latency.",
+          "Yes. The sensors do not need to speak MQTT or HTTP directly. A local gateway — an edge controller, industrial IoT gateway, or a Raspberry Pi running a small adapter — can read your sensors via their native interface and publish SenML payloads to the Telemetry Channel. Many commercial agriculture gateways support RS-485 Modbus, SDI-12, and other field bus protocols out of the box. As long as the gateway delivers correctly formatted SenML records, the detection rules and dashboards work identically to a native MQTT sensor.",
+      },
+      {
+        question: "Can the pack handle more than two irrigation zones?",
+        answer:
+          "Yes. The solution ships with two zones (Zone A and Zone B), but the architecture scales to any number. Each additional zone needs its own device clients, a group for access control, and connections to the Telemetry and Commands channels. The Zone Monitoring template scales automatically — assign it to any group containing devices tagged with the correct zone device tags and it renders the right data without any template changes. Detection rules apply to all telemetry in the Telemetry Channel, so new zone devices are covered by the same rules immediately after connection.",
       },
       {
         question:
-          "How does soil moisture-based scheduling differ from timer-based systems?",
+          "How often should devices publish readings for the alarms to be effective?",
         answer:
-          "Timer-based systems water on a fixed schedule regardless of actual soil conditions — leading to overwatering after rain or underwatering during heat spikes. Magistrala evaluates real-time volumetric water content and only opens valves when moisture genuinely drops below the target threshold for each zone.",
+          "Detection rules evaluate each SenML message as it arrives, so alarm latency equals the device's publish interval. For soil moisture monitoring where conditions change gradually, publishing every 5–10 minutes is adequate. For flow meter and pipe burst detection where conditions can change in seconds, publishing every 30–60 seconds gives operators a window to respond before significant water is lost. Battery reporting is not time-sensitive — once per hour is sufficient for the Low Battery Alert to be useful without generating unnecessary network traffic.",
       },
       {
         question:
-          "Can I manage irrigation across multiple properties or sites?",
+          "Can we use the pack with drip irrigation as well as sprinkler systems?",
         answer:
-          "Yes. Each property or irrigation zone is an isolated domain with its own sensors, valve rules, and dashboards. A portfolio manager can view water usage and system status across all sites from a single aggregated dashboard, while site operators manage only their own zones.",
-      },
-      {
-        question:
-          "How are water authority restrictions enforced automatically?",
-        answer:
-          "Configurable water budget rules track cumulative usage per day, week, or month. When a site approaches its permitted allocation, the rules engine throttles irrigation runs and alerts the operator. Rain sensor overrides and ET-based adjustments can be layered on top to further reduce waste.",
+          "Yes. The pack is agnostic to the irrigation delivery method. Drip and sprinkler systems both use flow meters to report `flow_rate` and `total_volume`, so the High Flow Alert, daily consumption report, and Irrigation Analytics Dashboard work the same way for both. The main difference is the normal flow rate range: a drip system running at 2–5 L/min will have a lower typical `flow_rate` than a sprinkler running at 15–22 L/min. You may want to lower the pipe burst threshold in the High Flow Alert rule to match your drip system's actual flow profile — the default of 40 L/min is calibrated for sprinkler systems.",
       },
     ],
 
     metaDescription:
-      "Deploy sensor-driven smart irrigation automation in minutes. The Magistrala Smart Irrigation Pack includes soil sensors, VWC-based scheduling rules, valve control, and water usage dashboards.",
+      "Monitor soil moisture, flow rate, tank level, and rainfall across multiple irrigation zones in real time. Detect dry soil, pipe bursts, and waterlogging within seconds with Magistrala's Smart Irrigation solution pack.",
     keywords: [
-      "smart irrigation IoT",
-      "soil moisture irrigation control",
-      "precision irrigation system",
-      "water saving irrigation",
-      "golf irrigation IoT",
-      "Magistrala irrigation",
+      "smart irrigation",
+      "soil moisture monitoring",
+      "irrigation IoT",
+      "precision agriculture",
+      "pipe burst detection",
+      "water usage monitoring",
+      "magistrala irrigation",
+      "MQTT soil sensor",
     ],
   },
 

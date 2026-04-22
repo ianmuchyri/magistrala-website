@@ -26,14 +26,15 @@ const SOLUTIONS_CONTENT = {
   solutions: [
     // — Row A ——————————————————————————————————————————
     {
-      id: "smart-city",
-      title: "Smart City",
+      id: "smart-irrigation",
+      title: "Smart Irrigation",
       description:
-        "Digitize urban infrastructure and unify civic command centers. Monitor traffic, energy, and public utilities from a single platform.",
-      href: "/solutions/smart-city",
-      image: "/solutions/smart-city.jpg",
+        "Trigger precise watering schedules automatically based on live soil moisture and weather forecast data.",
+      href: "/solutions/smart-irrigation",
+      image: "/solutions/smart-irrigation.jpg",
       colSpan: "md:col-span-2",
     },
+
     {
       id: "smart-water",
       title: "Smart Water Metering",
@@ -82,12 +83,12 @@ const SOLUTIONS_CONTENT = {
     },
     // — Row C (last row — always 2 × span-2) ——————————
     {
-      id: "smart-irrigation",
-      title: "Smart Irrigation",
+      id: "smart-city",
+      title: "Smart City",
       description:
-        "Trigger precise watering schedules automatically based on live soil moisture and weather forecast data.",
-      href: "/solutions/smart-irrigation",
-      image: "/solutions/smart-irrigation.jpg",
+        "Digitize urban infrastructure and unify civic command centers. Monitor traffic, energy, and public utilities from a single platform.",
+      href: "/solutions/smart-city",
+      image: "/solutions/smart-city.jpg",
       colSpan: "md:col-span-2",
     },
     {
