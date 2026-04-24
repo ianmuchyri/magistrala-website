@@ -899,12 +899,12 @@ export const solutions: Solution[] = [
         alt: "Alarm Monitoring Dashboard with active alarm counts by severity and full alarm triage table",
       },
       {
-        src: "/screenshots/solutions/oil-and-gas-monitoring/well-operator-template.png",
-        alt: "Well Operator Template showing per-well flow rate, wellhead pressure gauge, H2S level, flow rate trend, and tank level",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/well-operator-dashboard.png",
+        alt: "Well Operator dashboard showing per-well flow rate, wellhead pressure gauge, H2S level, flow rate trend, and tank level",
       },
       {
-        src: "/screenshots/solutions/oil-and-gas-monitoring/field-manager-summary-template.png",
-        alt: "Field Manager Summary Template with daily oil production chart, active alarms, water cut, tank level, and gas flow",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/field-manager-summary-dashboard.png",
+        alt: "Field Manager Summary dashboard with daily oil production chart, active alarms, water cut, tank level, and gas flow",
       },
     ],
 
